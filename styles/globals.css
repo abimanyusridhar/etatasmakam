@@ -1,0 +1,110 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import './palette.css'; /* ensure refined palette tokens are available */
+
+/* Replace verbose theme colors by mapping to palette variables for consistency */
+:root {
+  --background: var(--palette-bg);
+  --foreground: var(--palette-text);
+  --card: var(--palette-surface);
+  --card-foreground: var(--palette-text);
+  --popover: var(--palette-surface);
+  --popover-foreground: var(--palette-text);
+  --primary: var(--golden-beige);
+  --primary-foreground: var(--stone-brown);
+  --accent: var(--palette-accent);
+  --accent-foreground: var(--contrast-text-on-accent);
+  --border: var(--stone-brown-06);
+  --input: var(--stone-brown-02);
+  --ring: var(--focus-ring);
+  --radius: 0.625rem;
+}
+
+/* Keep the .dark map but simplified to reuse palette tokens where appropriate */
+.dark {
+  --background: #0f0b09;
+  --foreground: #f8f6f2;
+  --card: #1b1614;
+  --card-foreground: #f8f6f2;
+  --primary: var(--golden-beige);
+  --primary-foreground: var(--stone-brown);
+  --accent: var(--palette-accent);
+  --accent-foreground: var(--contrast-text-on-accent);
+  --border: rgba(255,255,255,0.04);
+  --ring: var(--focus-ring);
+}
+
+/* Keep theme inline mapping but simplified to use palette variables */
+@theme inline {
+  --font-sans: 'Geist', 'Geist Fallback';
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * { @apply border-border; }
+  body { background: var(--background); color: var(--foreground); font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
+}
+
+/* Update existing utilities to use refined palette */
+.luxury-gradient {
+  background: linear-gradient(135deg, var(--blessed-yellow) 0%, var(--golden-beige) 100%);
+}
+
+.sacred-overlay {
+  background: radial-gradient(circle at center, rgba(250,229,196,0.10) 0%, rgba(180,146,94,0.06) 50%, rgba(28,25,23,0) 100%);
+}
+
+.royal-card {
+  backdrop-filter: blur(8px);
+  background: linear-gradient(145deg, rgba(255,252,247,0.96) 0%, rgba(235,220,200,0.9) 100%);
+  border: 1px solid var(--stone-brown-06);
+}
+
+/* golden-text: use warm gradient for a realistic gold tone */
+.golden-text {
+  background: linear-gradient(90deg, #B98D51, #F6E6B8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Keep transitions and animations */
+.smooth-transition { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+.hover-lift { transition: transform 0.28s ease, box-shadow 0.28s ease; }
+.hover-lift:hover { transform: translateY(-4px); box-shadow: 0 12px 28px -6px rgba(180,146,94,0.14); }
+
+.sacred-glow { box-shadow: 0 0 20px rgba(250, 229, 196, 0.12); }
+
+@keyframes royalFade {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.animate-royal {
+  animation: royalFade 0.6s ease-out forwards;
+}
+
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.scroll-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}

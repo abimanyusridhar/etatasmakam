@@ -1,0 +1,146 @@
+/* Refined color palette and utilities for ETAT ASMAKAM */
+/* Primary palette: Stone Brown, Divine Red, Blessed Yellow, Golden Beige, Sacred White */
+
+:root {
+  /* Core colors (refined) */
+  --divine-red: #E53935;
+  --divine-red-700: #c62828;
+
+  --sacred-white: #FFFFFF;
+  --sacred-white-off: #f5f5f5;
+
+  --blessed-yellow: #FFEB3B;
+  --blessed-yellow-700: #fbc02d;
+
+  --golden-beige: #D4AF35;
+  --golden-beige-700: #b38f24;
+
+  --stone-brown: #4E342E;
+  --stone-brown-700: #3e2723;
+
+  /* Semantic tokens */
+  --palette-accent: var(--divine-red);
+  --palette-bg: var(--sacred-white);
+  --palette-surface: var(--golden-beige);
+  --palette-text: var(--stone-brown);
+  --palette-highlight: var(--blessed-yellow);
+
+  /* Overlay colors */
+  --stone-brown-02: rgba(78, 52, 46, 0.02);
+  --stone-brown-06: rgba(78, 52, 46, 0.06);
+  --divine-red-06: rgba(229, 57, 53, 0.06);
+  --divine-red-10: rgba(229, 57, 53, 0.10);
+
+  /* Accessibility helpers */
+  --contrast-text-on-accent: #fff;
+  --focus-ring: rgba(185,41,34,0.20);
+}
+
+/* Overlay used throughout for warm tint */
+.sacred-overlay {
+  pointer-events: none;
+  background: linear-gradient(180deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(212, 175, 53, 0.05),
+    rgba(78, 52, 46, 0.08)
+  );
+  mix-blend-mode: overlay;
+}
+
+/* Slightly stronger hero overlay */
+.hero-strong-overlay {
+  background: radial-gradient(ellipse at center,
+    rgba(185,41,34,0.18), rgba(83,54,34,0.12));
+}
+
+/* Subtle card overlay (used instead of from-black/30 etc.) */
+.bg-card-overlay {
+  background: linear-gradient(180deg,
+    rgba(20,16,14,0.04),
+    rgba(20,16,14,0.02));
+}
+
+/* Small backdrop card for content panels */
+.backdrop-card {
+  background: linear-gradient(180deg, rgba(255,252,247,0.88), rgba(235,220,200,0.86));
+  border: 1px solid var(--stone-brown-06);
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(22,12,8,0.10);
+}
+
+/* Text utilities */
+.golden-text {
+  color: var(--golden-beige);
+  text-shadow: 0 2px 10px rgba(36,22,16,0.28);
+  font-weight: 700;
+}
+
+.text-sacred-beige { color: rgba(231,204,176,0.96); }
+.text-stone-rich { color: var(--stone-brown); }
+.text-foreground { color: rgba(20,16,14,0.92); }
+
+/* Accent / CTA */
+.accent {
+  background-color: var(--palette-accent);
+  color: var(--contrast-text-on-accent);
+  border-radius: 8px;
+  border: 1px solid var(--divine-red-06);
+  box-shadow: 0 8px 24px rgba(185,41,34,0.08);
+}
+.accent-foreground { color: var(--contrast-text-on-accent); }
+
+/* Subtle accent surface for small badges and list highlights */
+.bg-accent-subtle { background-color: var(--divine-red-10); color: var(--palette-accent); }
+.bg-accent-10 { background-color: rgba(185,41,34,0.10); }
+.hover-bg-accent-subtle { transition: background-color 180ms ease; }
+.hover-bg-accent-subtle:hover { background-color: rgba(185,41,34,0.06); }
+
+/* Enhanced gradient utilities */
+.luxury-gradient {
+  background: linear-gradient(135deg,
+    var(--blessed-yellow) 0%,
+    var(--golden-beige) 50%,
+    var(--stone-brown) 100%
+  );
+  color: var(--sacred-white);
+}
+
+/* Cards and surfaces */
+.royal-card {
+  background: linear-gradient(145deg,
+    rgba(255, 255, 255, 0.95),
+    rgba(212, 175, 53, 0.1)
+  );
+  border: 1px solid rgba(78, 52, 46, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 12px 36px rgba(22,12,8,0.12);
+  color: var(--palette-text);
+}
+
+.bg-card {
+  background: linear-gradient(180deg, rgba(247,240,233,0.98), rgba(235,220,200,0.9));
+  color: var(--palette-text);
+}
+
+/* Borders & focus */
+.border-border { border-color: var(--stone-brown-06) !important; }
+.outline-focus {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* Hover / lift */
+.hover-lift {
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 48px rgba(22,12,8,0.16);
+}
+
+/* Small helpers */
+.smooth-transition { transition: all 0.28s cubic-bezier(.4,0,.2,1); }
+.sacred-glow { box-shadow: 0 0 22px rgba(250,229,196,0.12); }
+
+/* Accessibility: ensure buttons and links have minimum contrast */
+.ensure-contrast-on-accent { color: var(--contrast-text-on-accent); }
