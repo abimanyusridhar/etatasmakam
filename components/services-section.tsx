@@ -1,45 +1,81 @@
 "use client";
 
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export function ServicesSection() {
+  const router = useRouter();
+
+  const handleNavigation = (cta: string) => {
+    switch (cta) {
+      case "View Menu":
+        router.push("/menu");
+        break;
+      case "Book Catering":
+      case "Pickup Now":
+        // Smooth scroll to footer for contact information
+        document.getElementById('footer')?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+        break;
+      case "Order 24/7":
+        router.push("/#order");
+        break;
+      default:
+        break;
+    }
+  };
+
   const services = [
     {
-      title: "Takeaway",
-      description: "Experience authentic Karnataka cuisine at home. Our carefully packaged dishes ensure the perfect taste and temperature.",
-      icon: "/icons/takeaway.png",
+      title: "Offline Cart Pickup",
+      description: "Quick and convenient offline cart pickups — grab your freshly prepared meals while they stay hot and delicious.",
+      icon: "/icons/cart.png",
       features: [
-        "Fresh Preparation",
-        "Quality Packaging",
         "Easy Pickup",
-        "Timely Service"
+        "Fresh Preparation",
+        "Secure Packaging",
+        "No-fuss Collection"
       ],
-      cta: "Order Takeaway"
+      cta: "Pickup Now"
     },
     {
-      title: "Online Ordering",
-      description: "Order your favorite dishes with just a few clicks. Track your order in real-time and enjoy secure payment options.",
-      icon: "/icons/digital-order.png",
+      title: "24/7 Online Delivery",
+      description: "Order anytime — we deliver round-the-clock so you can satisfy midnight veg cravings with reliable, fast delivery.",
+      icon: "/icons/delivery.png",
       features: [
-        "Easy Ordering",
+        "Round-the-clock Service",
         "Live Tracking",
-        "Secure Payment",
-        "Quick Delivery"
+        "Hot & Fresh Delivery",
+        "Secure Payment"
       ],
-      cta: "Order Online"
+      cta: "Order 24/7"
     },
     {
-      title: "Event Catering",
-      description: "Make your events special with our professional catering services. We deliver excellence for gatherings of any size.",
+      title: "Private Party Catering",
+      description: "Tailored catering for private parties and events — premium presentation and consistent taste for gatherings of any size.",
       icon: "/icons/catering.png",
       features: [
         "Custom Menus",
         "Professional Staff",
-        "Quality Service",
+        "On-time Setup",
         "Event Support"
       ],
       cta: "Book Catering"
     },
+    {
+      title: "Pure Veg • Premium & Affordable",
+      description: "100% pure vegetarian menu crafted with premium ingredients — top-notch quality at affordable prices.",
+      icon: "/icons/veg.png",
+      features: [
+        "100% Pure Veg",
+        "Premium Ingredients",
+        "Affordable Pricing",
+        "Consistent Quality"
+      ],
+      cta: "View Menu"
+    }
   ];
 
   return (
@@ -48,12 +84,13 @@ export function ServicesSection() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
-          <span className="inline-block mb-4 text-blessed-yellow text-2xl">💫</span>
+          <span className="inline-block mb-4 text-blessed-yellow text-2xl"></span>
           <h2 className="text-5xl font-bold golden-text mb-6 animate-fade-in">
             Our Services
           </h2>
+          {/* Updated intro: explicit no dine-in and highlight 24/7 + services */}
           <p className="text-xl text-blessed-yellow opacity-90 max-w-3xl mx-auto animate-fade-in [animation-delay:200ms]">
-            Experience ETAT ASMAKAM's authentic Karnataka cuisine through our convenient services.
+            We do not offer dine-in. Experience ETAT ASMAKAM's authentic Karnataka cuisine via offline cart pickups, 24/7 online delivery, and private party catering — always pure veg and premium yet affordable.
           </p>
         </div>
 
@@ -96,7 +133,10 @@ export function ServicesSection() {
                     ))}
                   </div>
 
-                  <button className="mt-6 w-full luxury-gradient text-stone-brown font-semibold py-3 rounded-lg hover:opacity-90 transition-opacity duration-300 group-hover:sacred-glow">
+                  <button
+                    onClick={() => handleNavigation(service.cta)}
+                    className="mt-6 w-full luxury-gradient text-stone-brown font-semibold py-3 rounded-lg hover:opacity-90 transition-opacity duration-300 group-hover:sacred-glow"
+                  >
                     {service.cta}
                   </button>
                 </div>
@@ -112,11 +152,12 @@ export function ServicesSection() {
         <div className="mt-16 text-center">
           <div className="royal-card inline-block px-8 py-6 rounded-2xl backdrop-blur-lg border border-golden-beige/30">
             <p className="text-xl text-sacred-white mb-4">Ready to order?</p>
+            {/* Updated CTA to emphasize 24/7 ordering */}
             <a
               href="tel:7259322466"
               className="luxury-gradient px-8 py-3 rounded-lg text-stone-brown font-semibold hover-lift sacred-glow inline-flex items-center justify-center gap-2"
             >
-              <span>📞</span> Call Now
+              <span>📞</span> Call / Order (24x7)
             </a>
           </div>
         </div>

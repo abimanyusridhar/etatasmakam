@@ -1,4 +1,23 @@
-# Node modules
+# Enable Corepack and activate pnpm (recommended)
+corepack enable
+corepack prepare pnpm@latest --activate
+
+# OR, if Corepack isn't available, install pnpm globally (run PowerShell as Admin)
+npm install -g pnpm
+
+# Verify installation
+pnpm -v
+
+# Update lockfile and install dependencies (updates pnpm-lock.yaml)
+pnpm install
+
+# Verify build locally
+pnpm run build
+
+# Commit updated lockfile and push
+git add pnpm-lock.yaml
+git commit -m "chore: update pnpm-lock.yaml"
+git push origin main# Node modules
 /node_modules/
 
 # Next.js build output

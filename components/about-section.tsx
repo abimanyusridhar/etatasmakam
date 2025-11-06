@@ -2,8 +2,11 @@
 
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
+import { useRouter } from "next/navigation"
 
 export function AboutSection() {
+  const router = useRouter()
+
   const features = [
     {
       icon: "/icons/heritage.png",
@@ -16,16 +19,39 @@ export function AboutSection() {
       description: "Our expert chefs bring decades of culinary expertise to every dish"
     },
     {
-      icon: "/icons/quality.png",
-      title: "Quality First",
-      description: "Using premium ingredients and traditional cooking methods"
+      icon: "/icons/veg.png",
+      title: "Pure Veg",
+      description: "100% pure vegetarian offerings across our entire menu"
     },
     {
-      icon: "/icons/satisfaction.png",
-      title: "Customer Satisfaction",
-      description: "Committed to exceeding expectations in taste and service"
+      icon: "/icons/delivery.png",
+      title: "24/7 Online Delivery",
+      description: "Round-the-clock online delivery — satisfy your midnight veg cravings"
+    },
+    {
+      icon: "/icons/cart.png",
+      title: "Offline Cart & Online Ordering",
+      description: "Convenient offline cart pickup and smooth online ordering experience"
+    },
+    {
+      icon: "/icons/catering.png",
+      title: "Private Party Catering",
+      description: "Tailored private catering for events with premium quality and presentation"
+    },
+    {
+      icon: "/icons/quality.png",
+      title: "Premium & Affordable",
+      description: "Top‑notch premium quality at affordable prices"
     }
   ]
+
+  const handleNavigation = (type: 'menu' | 'contact') => {
+    if (type === 'menu') {
+      router.push('/menu')
+    } else {
+      document.getElementById('footer')?.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
 
   return (
     <section className="relative py-32 overflow-hidden" id="about">
@@ -54,21 +80,26 @@ export function AboutSection() {
           <div className="space-y-8 animate-fade-right">
             <div className="space-y-6 text-sacred-white/90">
               <p className="text-lg leading-relaxed border-l-4 border-golden-beige pl-6">
-                Welcome to ETAT ASMAKAM, where culinary excellence meets royal hospitality.
-                Established in 2023, we have quickly become synonymous with authentic Karnataka cuisine,
-                particularly known for our exceptional rice baths and signature biryanis.
+                Welcome to ETAT ASMAKAM. Since 2023, we have been dedicated to bringing authentic Karnataka flavours to your doorstep, with a focus on rice baths, biryanis, and wholesome vegetarian fare.
               </p>
               <p className="text-lg leading-relaxed">
-                Our journey began with a simple yet powerful vision: to preserve and present the
-                rich culinary heritage of Karnataka while ensuring both quality and quantity exceed
-                expectations. Every dish that leaves our kitchen carries the warmth of tradition
-                and the mark of excellence.
+                Please note: we do not offer dine-in services. We operate exclusively through online ordering, deliveries, offline cart pickups, and private catering.
               </p>
+
+              {/* Compact services list */}
+              <div className="text-lg leading-relaxed">
+                <strong className="golden-text">Our Services:</strong>
+                <ul className="mt-2 ml-4 list-disc text-sacred-white/90">
+                  <li>Offline cart pickups</li>
+                  <li>Online deliveries (24hrs)</li>
+                  <li>Private party catering</li>
+                  <li>100% Pure veg menu</li>
+                  <li>Top‑notch premium quality at affordable prices</li>
+                </ul>
+              </div>
+
               <p className="text-lg leading-relaxed">
-                At ETAT ASMAKAM, we believe dining is not just about food—it's about creating
-                memorable experiences. Our commitment to authenticity is reflected in our
-                cooking methods, where age-old recipes meet premium ingredients to create
-                dishes that delight both the palate and the soul.
+                Our commitment to authenticity and quality ensures every order reflects traditional recipes prepared with premium ingredients — delivered fresh and reliably.
               </p>
             </div>
 
@@ -100,12 +131,18 @@ export function AboutSection() {
               ))}
             </div>
 
-            {/* CTA Buttons */}
+            {/* Updated CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 pt-6">
-              <Button className="luxury-gradient text-stone-rich px-8 py-6 transform transition-all duration-300 hover:scale-105 hover:shadow-xl backdrop-blur-sm text-lg font-semibold w-full sm:w-auto">
+              <Button
+                onClick={() => handleNavigation('menu')}
+                className="luxury-gradient text-stone-rich px-8 py-6 transform transition-all duration-300 hover:scale-105 hover:shadow-xl backdrop-blur-sm text-lg font-semibold w-full sm:w-auto"
+              >
                 Discover More
               </Button>
-              <Button className="royal-gradient text-sacred-white px-8 py-6 transform transition-all duration-300 hover:scale-105 hover:shadow-xl backdrop-blur-sm text-lg font-semibold border border-golden-beige/20 w-full sm:w-auto">
+              <Button
+                onClick={() => handleNavigation('contact')}
+                className="royal-gradient text-sacred-white px-8 py-6 transform transition-all duration-300 hover:scale-105 hover:shadow-xl backdrop-blur-sm text-lg font-semibold border border-golden-beige/20 w-full sm:w-auto"
+              >
                 Contact Us
               </Button>
             </div>
@@ -129,9 +166,9 @@ export function AboutSection() {
               {/* Stats Grid */}
               <div className="grid grid-cols-3 gap-4 mt-6">
                 {[
-                  { label: "Founded", value: "2023", icon: "/icons/founded.png" },
+                  { label: "Founded", value: "2025", icon: "/icons/founded.png" },
                   { label: "Signature Dishes", value: "20+", icon: "/icons/dishes.png" },
-                  { label: "Happy Customers", value: "1000+", icon: "/icons/customers.png" }
+                  { label: "Happy Customers", value: "100+", icon: "/icons/customers.png" }
                 ].map((stat, index) => (
                   <div key={index} className="text-center p-4 royal-card rounded-xl group/stat hover:scale-105 transition-all duration-300">
                     <div className="mb-2 group-hover/stat:scale-110 transition-transform duration-300 bg-gradient-to-br from-golden-beige/30 to-stone-brown/30 p-2 rounded-lg mx-auto w-10 h-10 flex items-center justify-center">

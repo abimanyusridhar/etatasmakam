@@ -4,128 +4,131 @@ import Link from "next/link"
 import { Instagram, Twitter, Facebook, Mail, Phone, MapPin } from "lucide-react"
 
 export function Footer() {
-  const currentYear = new Date().getFullYear()
+  const phoneNumber = "7259322466"
+  const whatsappLink = `https://wa.me/91${phoneNumber}`
 
   return (
-    <footer id="contact" className="bg-gradient-to-b from-card to-primary border-t border-border pt-16 pb-8 relative">
-      <div className="sacred-overlay absolute inset-0 opacity-10" />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+    <footer id="footer" className="relative py-16 bg-stone-brown/98">
+      <div className="absolute inset-0 sacred-overlay" />
+
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
           {/* Contact Info */}
-          <div>
-            <h3 className="text-xl font-bold golden-text mb-6">Contact Us</h3>
-            <div className="space-y-4">
-              <div className="flex items-start gap-3 group">
-                <MapPin className="text-accent flex-shrink-0 mt-1 group-hover:text-golden-500 transition-colors" size={20} />
+          <div className="space-y-6">
+            <h3 className="text-2xl font-bold golden-text">Get in Touch</h3>
+            <div className="space-y-6">
+              <div className="flex items-start gap-4 text-blessed-yellow group">
+                <Phone className="w-6 h-6 mt-1 group-hover:text-divine-red transition-colors" />
                 <div>
-                  <p className="font-semibold text-sacred-beige">Restaurant Address</p>
-                  <p className="text-muted-foreground text-sm hover:text-sacred-beige transition-colors">[Placeholder Address]</p>
+                  <p className="font-semibold mb-1">Contact Us</p>
+                  <a href={`tel:${phoneNumber}`} className="hover:text-divine-red transition-colors block">
+                    +91 {phoneNumber}
+                  </a>
+                  <a
+                    href={whatsappLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 hover:text-divine-red transition-colors mt-2"
+                  >
+                    <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current">
+                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                    </svg>
+                    Chat on WhatsApp
+                  </a>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3">
-                <Mail className="text-accent flex-shrink-0" size={20} />
-                <a
-                  href="mailto:etatasmakam@gmail.com"
-                  className="text-muted-foreground hover:text-accent transition-colors"
-                >
-                  etatasmakam@gmail.com
+              <div className="flex items-start gap-4 text-blessed-yellow group">
+                <MapPin className="w-6 h-6 mt-1 group-hover:text-divine-red transition-colors" />
+                <div>
+                  <p className="font-semibold mb-1">Visit Us</p>
+                  <address className="not-italic text-sacred-white/90 leading-relaxed">
+                    ETAT ASMAKAM,<br />
+                    Near Mulbagal Bus Stand,<br />
+                    Mulbagal, Karnataka 563131<br />
+                    <a
+                      href="https://maps.google.com/?q=ETAT+ASMAKAM+Mulbagal"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blessed-yellow hover:text-divine-red transition-colors inline-flex items-center gap-2 mt-2"
+                    >
+                      Get Directions
+                      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                        <path d="M15 3h6v6" />
+                        <path d="M10 14L21 3" />
+                      </svg>
+                    </a>
+                  </address>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4 text-blessed-yellow group">
+                <Mail className="w-6 h-6 mt-1 group-hover:text-divine-red transition-colors" />
+                <div>
+                  <p className="font-semibold mb-1">Email Us</p>
+                  <a href="mailto:contact@etatasmakam.com" className="hover:text-divine-red transition-colors">
+                    contact@etatasmakam.com
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4 pt-4">
+                <a href="#" className="text-blessed-yellow hover:text-divine-red transition-colors">
+                  <Instagram className="w-6 h-6" />
+                </a>
+                <a href="#" className="text-blessed-yellow hover:text-divine-red transition-colors">
+                  <Facebook className="w-6 h-6" />
+                </a>
+                <a href="#" className="text-blessed-yellow hover:text-divine-red transition-colors">
+                  <Twitter className="w-6 h-6" />
                 </a>
               </div>
+            </div>
+          </div>
 
-              <div className="flex items-center gap-3">
-                <Phone className="text-accent flex-shrink-0" size={20} />
-                <div className="space-y-1">
-                  <a href="tel:7259322466" className="block text-muted-foreground hover:text-accent transition-colors">
-                    7259322466
-                  </a>
-                  <a href="tel:8951603763" className="block text-muted-foreground hover:text-accent transition-colors">
-                    8951603763
-                  </a>
-                </div>
-              </div>
+          {/* Hours */}
+          <div className="space-y-6">
+            <h3 className="text-2xl font-bold golden-text">Hours</h3>
+            <div className="space-y-2 text-sacred-white/90">
+              <p className="flex justify-between">
+                <span>Monday - Sunday</span>
+                <span className="text-blessed-yellow">24/7</span>
+              </p>
+              <p className="text-sm text-blessed-yellow">
+                * Orders & Pickups available round the clock
+              </p>
             </div>
           </div>
 
           {/* Quick Links */}
-          <div>
-            <h3 className="text-xl font-bold text-accent mb-6">Quick Links</h3>
-            <nav className="space-y-3">
-              <Link href="/" className="block text-muted-foreground hover:text-accent transition-colors">
-                Home
-              </Link>
-              <Link href="/menu" className="block text-muted-foreground hover:text-accent transition-colors">
+          <div className="space-y-6">
+            <h3 className="text-2xl font-bold golden-text">Quick Links</h3>
+            <div className="flex flex-col space-y-2">
+              <a href="/menu" className="text-blessed-yellow hover:text-divine-red transition-colors">
                 Menu
-              </Link>
-              <Link href="/#services" className="block text-muted-foreground hover:text-accent transition-colors">
+              </a>
+              <button
+                onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
+                className="text-left text-blessed-yellow hover:text-divine-red transition-colors"
+              >
                 Services
-              </Link>
-              <Link href="/#about" className="block text-muted-foreground hover:text-accent transition-colors">
-                About Us
-              </Link>
-              <a href="#feedback" className="block text-muted-foreground hover:text-accent transition-colors">
-                Feedback
-              </a>
-            </nav>
-          </div>
-
-          {/* Social & WhatsApp */}
-          <div>
-            <h3 className="text-xl font-bold text-accent mb-6">Follow Us</h3>
-            <div className="flex gap-4 mb-8">
-              <a
-                href="https://instagram.com/etat_asmakam"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-card p-3 rounded hover:bg-accent hover:text-accent-foreground transition-all duration-200"
-                aria-label="Instagram"
-              >
-                <Instagram size={20} />
-              </a>
-              <a
-                href="https://twitter.com/Etat_Asmakam"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-card p-3 rounded hover:bg-accent hover:text-accent-foreground transition-all duration-200"
-                aria-label="Twitter"
-              >
-                <Twitter size={20} />
-              </a>
-              <a
-                href="https://facebook.com/Etat-Asmakam"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-card p-3 rounded hover:bg-accent hover:text-accent-foreground transition-all duration-200"
-                aria-label="Facebook"
-              >
-                <Facebook size={20} />
+              </button>
+              <a href="tel:7259322466" className="text-blessed-yellow hover:text-divine-red transition-colors">
+                Order Now
               </a>
             </div>
-
-            <a
-              href="https://wa.me/7259322466"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-3 w-full bg-[#25D366] text-white px-4 py-3 rounded-lg font-semibold hover:bg-[#128C7E] transition-all duration-300 shadow-lg hover:shadow-xl"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                className="w-6 h-6 fill-current"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564c.173.087.289.129.332.202.043.073.043.419-.101.824z"/>
-              </svg>
-              <span>Chat on WhatsApp</span>
-            </a>
           </div>
         </div>
 
-        <div className="border-t border-border pt-8">
-          <p className="text-center text-muted-foreground">
-            © {currentYear} ETAT ASMAKAM. All rights reserved. | Satisfaction of Quality and Quantity
-          </p>
+        <div className="mt-12 pt-8 border-t border-golden-beige/20 text-center text-sacred-white/70">
+          <p>© {new Date().getFullYear()} ETAT ASMAKAM. All rights reserved.</p>
         </div>
       </div>
+
+      {/* Decorative Elements */}
+      <div className="absolute top-0 left-0 w-72 h-72 bg-divine-red/5 blur-[100px] rounded-full" />
+      <div className="absolute bottom-0 right-0 w-72 h-72 bg-blessed-yellow/5 blur-[100px] rounded-full" />
     </footer>
-  )
+  );
 }
