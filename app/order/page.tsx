@@ -58,10 +58,10 @@ export default function Order() {
           </a>
         </div>
         <Link
-          href="/"
+          href="/order"
           className="luxury-gradient px-8 py-4 rounded-lg text-stone-brown font-semibold hover-lift sacred-glow inline-block mt-8"
         >
-          Return to Home
+          Order Now
         </Link>
       </div>
 

@@ -1,6 +1,7 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Use imports to avoid stylelint at-rule errors and let PostCSS resolve Tailwind layers */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 :root {
   /* Core Brand Colors - Enhanced */
@@ -154,27 +155,123 @@
   }
 }
 
-.animate-fade-in {
-  animation: fadeIn 0.5s ease-in;
-}
+@layer utilities {
+  /* stylelint-disable at-rule-no-unknown */
+  /* Mobile-First Responsive Utilities */
+  @media (max-width: 640px) {
+    .container {
+      padding-left: 0.75rem;
+      padding-right: 0.75rem;
+    }
+  }
 
-.animate-slide-up {
-  animation: slideUp 0.6s ease-out;
+  /* Responsive Text Sizes */
+  .text-responsive-sm {
+    @apply text-sm sm:text-base md:text-lg;
+  }
+
+  .text-responsive-base {
+    @apply text-base sm:text-lg md:text-xl;
+  }
+
+  .text-responsive-lg {
+    @apply text-lg sm:text-xl md:text-2xl;
+  }
+
+  .text-responsive-xl {
+    @apply text-xl sm:text-2xl md:text-3xl;
+  }
+
+  .text-responsive-2xl {
+    @apply text-2xl sm:text-3xl md:text-4xl;
+  }
+
+  .text-responsive-3xl {
+    @apply text-3xl sm:text-4xl md:text-5xl;
+  }
+
+  /* Responsive Padding */
+  .px-responsive {
+    @apply px-3 sm:px-4 md:px-6 lg:px-8;
+  }
+
+  .py-responsive {
+    @apply py-4 sm:py-6 md:py-8 lg:py-12;
+  }
+
+  /* Responsive Gap */
+  .gap-responsive {
+    @apply gap-2 sm:gap-4 md:gap-6 lg:gap-8;
+  }
+
+  /* Enhanced Mobile Scaling */
+  .scale-responsive {
+    @apply scale-90 sm:scale-95 md:scale-100;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-in-out;
+  }
+
+  .animate-fade-right {
+    animation: fadeRight 0.6s ease-in-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .animate-spin-slow {
+    animation: spin 6s linear infinite;
+  }
+  /* stylelint-enable at-rule-no-unknown */
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeRight {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 @keyframes slideUp {
   from {
-    transform: translateY(20px);
+    transform: translateY(30px);
     opacity: 0;
   }
   to {
     transform: translateY(0);
     opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
   }
 }
 
@@ -294,4 +391,25 @@ html {
   );
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
+}
+
+.sacred-glow {
+  box-shadow: 0 0 20px rgba(212, 175, 53, 0.4),
+              0 0 40px rgba(229, 57, 53, 0.2);
+  transition: box-shadow 0.3s ease;
+}
+
+.sacred-glow:hover {
+  box-shadow: 0 0 30px rgba(212, 175, 53, 0.6),
+              0 0 60px rgba(229, 57, 53, 0.3);
+}
+
+.divine-glow {
+  box-shadow: 0 0 20px rgba(229, 57, 53, 0.4),
+              0 0 40px rgba(212, 175, 53, 0.2);
+}
+
+.divine-glow:hover {
+  box-shadow: 0 0 30px rgba(229, 57, 53, 0.6),
+              0 0 60px rgba(212, 175, 53, 0.3);
 }

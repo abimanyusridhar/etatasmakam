@@ -2,11 +2,8 @@
 
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { useRouter } from "next/navigation"
 
 export function AboutSection() {
-  const router = useRouter()
-
   const features = [
     {
       icon: "/icons/heritage.png",
@@ -45,16 +42,15 @@ export function AboutSection() {
     }
   ]
 
-  const handleNavigation = (type: 'menu' | 'contact') => {
-    if (type === 'menu') {
-      router.push('/menu')
-    } else {
-      document.getElementById('footer')?.scrollIntoView({ behavior: 'smooth' })
+  const handleNavigation = (target: string) => {
+    const element = document.querySelector(target)
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" })
     }
   }
 
   return (
-    <section className="relative py-32 overflow-hidden" id="about">
+    <section className="relative py-20 sm:py-32 overflow-hidden" id="about">
       <div className="sacred-overlay absolute inset-0 opacity-80" />
 
       {/* Background Decorative Elements */}
@@ -66,45 +62,62 @@ export function AboutSection() {
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16 max-w-3xl mx-auto">
-          <span className="text-blessed-yellow text-lg font-medium inline-block mb-3 bg-golden-beige/10 px-4 py-1 rounded-full">
-            Our Legacy
+        <div className="text-center mb-16 max-w-3xl mx-auto animate-fade-in">
+          <span className="text-blessed-yellow text-sm font-bold inline-block mb-4 bg-golden-beige/15 px-4 py-2 rounded-full uppercase tracking-widest">
+            ✨ Our Legacy
           </span>
           <h2 className="text-4xl lg:text-5xl font-bold golden-text mb-6 leading-tight">
             A Royal Culinary Journey
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-divine-red via-golden-beige to-blessed-yellow mx-auto mb-6 rounded-full" />
+          <div className="w-24 h-1.5 bg-gradient-to-r from-divine-red via-golden-beige to-blessed-yellow mx-auto mb-8 rounded-full" />
+          <p className="text-lg text-blessed-yellow/90">
+            From midnight cravings to culinary excellence
+          </p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="space-y-8 animate-fade-right">
             <div className="space-y-6 text-sacred-white/90">
-              <p className="text-lg leading-relaxed border-l-4 border-golden-beige pl-6">
-                Welcome to ETAT ASMAKAM. Since 2023, we have been dedicated to bringing authentic Karnataka flavours to your doorstep, with a focus on rice baths, biryanis, and wholesome vegetarian fare.
-              </p>
-              <p className="text-lg leading-relaxed">
-                Please note: we do not offer dine-in services. We operate exclusively through online ordering, deliveries, offline cart pickups, and private catering.
-              </p>
-
-              {/* Compact services list */}
-              <div className="text-lg leading-relaxed">
-                <strong className="golden-text">Our Services:</strong>
-                <ul className="mt-2 ml-4 list-disc text-sacred-white/90">
-                  <li>Offline cart pickups</li>
-                  <li>Online deliveries (24hrs)</li>
-                  <li>Private party catering</li>
-                  <li>100% Pure veg menu</li>
-                  <li>Top‑notch premium quality at affordable prices</li>
-                </ul>
+              <div className="royal-card p-6 rounded-2xl border-l-4 border-blessed-yellow">
+                <p className="text-lg leading-relaxed font-medium">
+                  Welcome to ETAT ASMAKAM — where a midnight craving sparked a culinary dream.
+                </p>
               </div>
 
               <p className="text-lg leading-relaxed">
-                Our commitment to authenticity and quality ensures every order reflects traditional recipes prepared with premium ingredients — delivered fresh and reliably.
+                Our journey began when we embraced vegetarianism and discovered the struggle to find quality veg restaurants open at night. Despite roaming the city at midnight in search of affordable, satisfying meals, we found the options limited and disappointing.
+              </p>
+
+              <p className="text-lg leading-relaxed">
+                That challenge became our inspiration. After years of gaining experience in the food industry and patiently pursuing our vision, we proudly present ETAT ASMAKAM — a restaurant dedicated to satisfying everyone's midnight vegetarian cravings with authentic Karnataka flavors, premium quality, and affordable prices.
+              </p>
+
+              {/* Commitment List */}
+              <div className="bg-gradient-to-br from-golden-beige/10 to-divine-red/10 p-6 rounded-2xl border border-golden-beige/30">
+                <h4 className="text-xl font-bold golden-text mb-4">Our Commitment:</h4>
+                <ul className="space-y-3">
+                  {[
+                    "100% pure vegetarian cuisine",
+                    "24/7 online delivery & offline pickups",
+                    "Premium quality at affordable prices",
+                    "Private party catering services",
+                    "Authentic recipes with premium ingredients"
+                  ].map((item, idx) => (
+                    <li key={idx} className="flex items-center gap-3 text-sacred-white/90">
+                      <span className="text-blessed-yellow font-bold text-lg">✦</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <p className="text-lg leading-relaxed italic text-blessed-yellow border-l-4 border-blessed-yellow pl-6">
+                We may not be perfect, but we value every customer's feedback and grow alongside you. ETAT ASMAKAM is not just a restaurant — it's a step toward bigger dreams. ❤
               </p>
             </div>
 
             {/* Features Grid */}
-            <div className="grid sm:grid-cols-2 gap-6">
+            <div className="grid sm:grid-cols-2 gap-4">
               {features.map((feature, index) => (
                 <div
                   key={index}
@@ -131,24 +144,24 @@ export function AboutSection() {
               ))}
             </div>
 
-            {/* Updated CTA Buttons */}
+            {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 pt-6">
               <Button
-                onClick={() => handleNavigation('menu')}
-                className="luxury-gradient text-stone-rich px-8 py-6 transform transition-all duration-300 hover:scale-105 hover:shadow-xl backdrop-blur-sm text-lg font-semibold w-full sm:w-auto"
+                onClick={() => handleNavigation("#menu")}
+                className="luxury-gradient text-stone-brown px-8 py-6 transform transition-all duration-300 hover:scale-105 hover:shadow-xl backdrop-blur-sm text-lg font-semibold w-full sm:w-auto"
               >
-                Discover More
+                Discover Menu
               </Button>
               <Button
-                onClick={() => handleNavigation('contact')}
+                onClick={() => handleNavigation("#feedback")}
                 className="royal-gradient text-sacred-white px-8 py-6 transform transition-all duration-300 hover:scale-105 hover:shadow-xl backdrop-blur-sm text-lg font-semibold border border-golden-beige/20 w-full sm:w-auto"
               >
-                Contact Us
+                Send Feedback
               </Button>
             </div>
           </div>
 
-          {/* Right Column - Image and Stats */}
+          {/* Right Column */}
           <div className="space-y-8">
             {/* Main Image Card */}
             <div className="royal-card p-5 rounded-2xl hover-lift group">

@@ -5,6 +5,7 @@ import { Header } from "@/components/header"
 import { HeroSection } from "@/components/hero-section"
 import { ServicesSection } from "@/components/services-section"
 import { AboutSection } from "@/components/about-section"
+import { MenuSection } from "@/components/menu-section"
 import { FeedbackForm } from "@/components/feedback-form"
 
 function LoadingFallback() {
@@ -22,6 +23,7 @@ export default function Home() {
           <HeroSection />
           <ServicesSection />
           <AboutSection />
+          <MenuSection />
           <FeedbackForm />
         </Suspense>
       </div>

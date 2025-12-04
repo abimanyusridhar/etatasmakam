@@ -7,6 +7,13 @@ export function Footer() {
   const phoneNumber = "7259322466"
   const whatsappLink = `https://wa.me/91${phoneNumber}`
 
+  const handleScroll = (target: string) => {
+    const element = document.querySelector(target)
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" })
+    }
+  }
+
   return (
     <footer id="footer" className="relative py-16 bg-stone-brown/98">
       <div className="absolute inset-0 sacred-overlay" />
@@ -44,10 +51,14 @@ export function Footer() {
                   <p className="font-semibold mb-1">Visit Us</p>
                   <address className="not-italic text-sacred-white/90 leading-relaxed">
                     ETAT ASMAKAM,<br />
-                    Near Mulbagal Bus Stand,<br />
-                    Mulbagal, Karnataka 563131<br />
+                    Shop No. R.K Nagar,<br />
+                    594/7/1, Kothanur Main Rd,<br />
+                    Opp. BDS Nagar,<br />
+                    Kothanur Post,<br />
+                    Narayanapura,<br />
+                    Bengaluru, Karnataka 560077<br />
                     <a
-                      href="https://maps.google.com/?q=ETAT+ASMAKAM+Mulbagal"
+                      href="https://maps.google.com/?q=ETAT+ASMAKAM+Kothanur+Bengaluru"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-blessed-yellow hover:text-divine-red transition-colors inline-flex items-center gap-2 mt-2"
@@ -67,20 +78,20 @@ export function Footer() {
                 <Mail className="w-6 h-6 mt-1 group-hover:text-divine-red transition-colors" />
                 <div>
                   <p className="font-semibold mb-1">Email Us</p>
-                  <a href="mailto:contact@etatasmakam.com" className="hover:text-divine-red transition-colors">
-                    contact@etatasmakam.com
+                  <a href="mailto:etatasmakam@gmail.com" className="hover:text-divine-red transition-colors">
+                    etatasmakam@gmail.com
                   </a>
                 </div>
               </div>
 
               <div className="flex items-center gap-4 pt-4">
-                <a href="#" className="text-blessed-yellow hover:text-divine-red transition-colors">
+                <a href="#" className="text-blessed-yellow hover:text-divine-red transition-colors" aria-label="Instagram">
                   <Instagram className="w-6 h-6" />
                 </a>
-                <a href="#" className="text-blessed-yellow hover:text-divine-red transition-colors">
+                <a href="#" className="text-blessed-yellow hover:text-divine-red transition-colors" aria-label="Facebook">
                   <Facebook className="w-6 h-6" />
                 </a>
-                <a href="#" className="text-blessed-yellow hover:text-divine-red transition-colors">
+                <a href="#" className="text-blessed-yellow hover:text-divine-red transition-colors" aria-label="Twitter">
                   <Twitter className="w-6 h-6" />
                 </a>
               </div>
@@ -105,16 +116,19 @@ export function Footer() {
           <div className="space-y-6">
             <h3 className="text-2xl font-bold golden-text">Quick Links</h3>
             <div className="flex flex-col space-y-2">
-              <a href="/menu" className="text-blessed-yellow hover:text-divine-red transition-colors">
-                Menu
-              </a>
               <button
-                onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
-                className="text-left text-blessed-yellow hover:text-divine-red transition-colors"
+                onClick={() => handleScroll("#menu")}
+                className="text-left text-blessed-yellow hover:text-divine-red transition-colors font-medium"
+              >
+                Menu
+              </button>
+              <button
+                onClick={() => handleScroll("#services")}
+                className="text-left text-blessed-yellow hover:text-divine-red transition-colors font-medium"
               >
                 Services
               </button>
-              <a href="tel:7259322466" className="text-blessed-yellow hover:text-divine-red transition-colors">
+              <a href="tel:7259322466" className="text-blessed-yellow hover:text-divine-red transition-colors font-medium">
                 Order Now
               </a>
             </div>
