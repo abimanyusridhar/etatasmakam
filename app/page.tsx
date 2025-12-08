@@ -24,7 +24,9 @@ export default function Home() {
           <ServicesSection />
           <AboutSection />
           <MenuSection />
-          <FeedbackForm />
+          <FeedbackForm isOpen={false} onClose={function (): void {
+            throw new Error("Function not implemented.")
+          } } />
         </Suspense>
       </div>
     </main>
