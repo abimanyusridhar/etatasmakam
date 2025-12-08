@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Download, Trash2, Eye, Filter, Search, TrendingUp, Star, MessageSquare } from "lucide-react"
+import { Download, Trash2, Eye, Filter, Search, TrendingUp, Star, MessageSquare, AlertCircle } from "lucide-react"
 
 interface Feedback {
   id: string
@@ -25,6 +25,8 @@ export default function FeedbackDashboard() {
   const [sortBy, setSortBy] = useState("newest")
   const [searchTerm, setSearchTerm] = useState("")
   const [deleting, setDeleting] = useState<string | null>(null)
+  const [loginError, setLoginError] = useState("")
+  const [showPassword, setShowPassword] = useState(false)
 
   const serviceLabels: Record<string, string> = {
     pickup: "🏪 Pickup at Counter",
@@ -34,6 +36,13 @@ export default function FeedbackDashboard() {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
+    setLoginError("")
+
+    if (!password.trim()) {
+      setLoginError("Please enter a password")
+      return
+    }
+
     try {
       const response = await fetch("/api/feedback", {
         headers: {
@@ -44,11 +53,14 @@ export default function FeedbackDashboard() {
       if (response.ok) {
         setIsAuthenticated(true)
         fetchFeedback()
+      } else if (response.status === 401) {
+        setLoginError("Invalid password. Please check your .env.local file or contact the administrator.")
       } else {
-        alert("Invalid password")
+        setLoginError("Authentication failed. Please try again.")
       }
     } catch (error) {
-      alert("Authentication failed")
+      setLoginError("Connection error. Please ensure the server is running.")
+      console.error("Auth error:", error)
     }
   }
 
@@ -62,8 +74,8 @@ export default function FeedbackDashboard() {
 
       if (response.ok) {
         const data = await response.json()
-        setFeedback(data.data)
-        applyFilters(data.data)
+        setFeedback(data.data || [])
+        applyFilters(data.data || [])
       }
     } catch (error) {
       console.error("Failed to fetch feedback:", error)
@@ -75,12 +87,10 @@ export default function FeedbackDashboard() {
   const applyFilters = (feedbackData: Feedback[]) => {
     let filtered = feedbackData
 
-    // Filter by service type
     if (filterService !== "all") {
       filtered = filtered.filter(f => f.serviceType === filterService)
     }
 
-    // Filter by search term
     if (searchTerm.trim()) {
       filtered = filtered.filter(f =>
         f.orderId?.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -88,7 +98,6 @@ export default function FeedbackDashboard() {
       )
     }
 
-    // Sort
     if (sortBy === "newest") {
       filtered.sort((a, b) => new Date(b.submittedAt).getTime() - new Date(a.submittedAt).getTime())
     } else if (sortBy === "oldest") {
@@ -109,7 +118,6 @@ export default function FeedbackDashboard() {
   const handleDeleteFeedback = async (id: string) => {
     if (confirm("Are you sure you want to delete this feedback?")) {
       setDeleting(id)
-      // In production, send DELETE request to API
       const updatedFeedback = feedback.filter(f => f.id !== id)
       setFeedback(updatedFeedback)
       setFilteredFeedback(updatedFeedback.filter(f => f.id !== id))
@@ -161,19 +169,39 @@ export default function FeedbackDashboard() {
       <div className="min-h-screen bg-gradient-to-b from-stone-brown to-stone-brown/80 flex items-center justify-center p-4">
         <div className="bg-stone-brown border border-golden-beige/30 rounded-2xl p-8 max-w-md w-full shadow-2xl">
           <h1 className="text-3xl font-bold text-blessed-yellow mb-2 text-center">Feedback Admin</h1>
-          <p className="text-sacred-white/60 text-center text-sm mb-6">Secure Dashboard</p>
+          <p className="text-sacred-white/60 text-center text-sm mb-8">Secure Dashboard</p>
           
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
               <label className="block text-golden-beige font-semibold mb-2">Admin Password</label>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter admin password"
-                className="w-full px-4 py-3 rounded-lg bg-sacred-white text-stone-brown placeholder-stone-brown/40 font-medium focus:outline-none focus:ring-2 focus:ring-blessed-yellow"
-              />
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => {
+                    setPassword(e.target.value)
+                    setLoginError("")
+                  }}
+                  placeholder="Enter admin password"
+                  className="w-full px-4 py-3 rounded-lg bg-sacred-white text-stone-brown placeholder-stone-brown/40 font-medium focus:outline-none focus:ring-2 focus:ring-blessed-yellow"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-3 text-stone-brown/60 hover:text-stone-brown"
+                >
+                  {showPassword ? "Hide" : "Show"}
+                </button>
+              </div>
             </div>
+
+            {loginError && (
+              <div className="bg-divine-red/15 border border-divine-red/40 rounded-lg p-3 flex gap-3">
+                <AlertCircle size={18} className="text-divine-red flex-shrink-0 mt-0.5" />
+                <p className="text-divine-red text-sm">{loginError}</p>
+              </div>
+            )}
+
             <button
               type="submit"
               className="w-full luxury-gradient text-stone-brown font-bold py-3 rounded-lg hover:shadow-lg transition-all duration-300"
@@ -182,8 +210,30 @@ export default function FeedbackDashboard() {
             </button>
           </form>
 
-          <p className="text-sacred-white/60 text-xs text-center mt-4">
-            Check .env.local for default password
+          <div className="mt-6 space-y-3 border-t border-golden-beige/20 pt-6">
+            <p className="text-sacred-white/60 text-xs font-medium">Password Reset Options:</p>
+            
+            <div className="bg-golden-beige/10 border border-golden-beige/20 rounded-lg p-3 space-y-2">
+              <p className="text-sacred-white/80 text-xs">
+                <span className="font-semibold text-blessed-yellow">Option 1:</span> Check your <code className="bg-stone-brown/60 px-1.5 py-0.5 rounded text-xs">.env.local</code> file for <code className="bg-stone-brown/60 px-1.5 py-0.5 rounded text-xs">ADMIN_PASSWORD</code>
+              </p>
+            </div>
+
+            <div className="bg-golden-beige/10 border border-golden-beige/20 rounded-lg p-3 space-y-2">
+              <p className="text-sacred-white/80 text-xs">
+                <span className="font-semibold text-blessed-yellow">Option 2:</span> Default password in production is <code className="bg-stone-brown/60 px-1.5 py-0.5 rounded text-xs font-mono">admin123</code> (change immediately!)
+              </p>
+            </div>
+
+            <div className="bg-blessing-green/10 border border-blessing-green/20 rounded-lg p-3 space-y-2">
+              <p className="text-sacred-white/80 text-xs">
+                <span className="font-semibold text-blessing-green">Option 3:</span> Contact your administrator to reset the password via environment variables
+              </p>
+            </div>
+          </div>
+
+          <p className="text-sacred-white/50 text-xs text-center mt-6">
+            ETAT ASMAKAM Admin Dashboard v1.0
           </p>
         </div>
       </div>
@@ -203,14 +253,18 @@ export default function FeedbackDashboard() {
             <p className="text-sacred-white/60 text-sm mt-1">Manage and analyze customer feedback</p>
           </div>
           <button
-            onClick={() => setIsAuthenticated(false)}
+            onClick={() => {
+              setIsAuthenticated(false)
+              setPassword("")
+              setLoginError("")
+            }}
             className="text-sacred-white/80 hover:text-divine-red transition-colors text-sm font-semibold"
           >
             Logout
           </button>
         </div>
 
-        {/* Stats Grid - Enhanced */}
+        {/* Stats Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
           <div className="bg-gradient-to-br from-golden-beige/20 to-golden-beige/10 border border-golden-beige/30 rounded-lg p-6 hover:border-blessed-yellow/50 transition-all duration-300">
             <div className="flex items-center justify-between">
@@ -253,10 +307,9 @@ export default function FeedbackDashboard() {
           </div>
         </div>
 
-        {/* Filters & Search - Enhanced */}
+        {/* Filters & Search */}
         <div className="bg-stone-brown/60 border border-golden-beige/20 rounded-lg p-4 sm:p-6 mb-6 space-y-4">
           <div className="flex flex-col sm:flex-row gap-4">
-            {/* Search */}
             <div className="flex-1">
               <div className="relative">
                 <Search size={18} className="absolute left-3 top-3 text-sacred-white/40" />
@@ -270,34 +323,27 @@ export default function FeedbackDashboard() {
               </div>
             </div>
 
-            {/* Filter */}
-            <div>
-              <select
-                value={filterService}
-                onChange={(e) => setFilterService(e.target.value)}
-                className="w-full px-3 py-2 rounded-lg bg-sacred-white text-stone-brown font-medium focus:outline-none focus:ring-2 focus:ring-blessed-yellow text-sm"
-              >
-                <option value="all">All Services</option>
-                <option value="pickup">Pickup</option>
-                <option value="delivery">Delivery</option>
-                <option value="catering">Catering</option>
-              </select>
-            </div>
+            <select
+              value={filterService}
+              onChange={(e) => setFilterService(e.target.value)}
+              className="w-full sm:w-auto px-3 py-2 rounded-lg bg-sacred-white text-stone-brown font-medium focus:outline-none focus:ring-2 focus:ring-blessed-yellow text-sm"
+            >
+              <option value="all">All Services</option>
+              <option value="pickup">Pickup</option>
+              <option value="delivery">Delivery</option>
+              <option value="catering">Catering</option>
+            </select>
 
-            {/* Sort */}
-            <div>
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-                className="w-full px-3 py-2 rounded-lg bg-sacred-white text-stone-brown font-medium focus:outline-none focus:ring-2 focus:ring-blessed-yellow text-sm"
-              >
-                <option value="newest">Newest</option>
-                <option value="oldest">Oldest</option>
-                <option value="rating">Highest Rating</option>
-              </select>
-            </div>
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="w-full sm:w-auto px-3 py-2 rounded-lg bg-sacred-white text-stone-brown font-medium focus:outline-none focus:ring-2 focus:ring-blessed-yellow text-sm"
+            >
+              <option value="newest">Newest</option>
+              <option value="oldest">Oldest</option>
+              <option value="rating">Highest Rating</option>
+            </select>
 
-            {/* Export */}
             <button
               onClick={exportCSV}
               className="px-4 py-2 bg-blessing-green/20 border border-blessing-green/50 text-blessing-green rounded-lg font-semibold hover:bg-blessing-green/30 transition-all duration-300 flex items-center gap-2 whitespace-nowrap text-sm"
@@ -307,26 +353,22 @@ export default function FeedbackDashboard() {
             </button>
           </div>
 
-          {/* Results info */}
           <p className="text-sacred-white/70 text-xs">
             Showing <span className="font-bold text-blessed-yellow">{filteredFeedback.length}</span> of <span className="font-bold text-blessed-yellow">{feedback.length}</span> feedback items
           </p>
         </div>
 
-        {/* Feedback List - Enhanced Cards */}
+        {/* Feedback List */}
         <div className="space-y-4">
           {filteredFeedback.length > 0 ? (
             filteredFeedback.map((item) => (
               <div
                 key={item.id}
-                className="bg-gradient-to-r from-stone-brown/60 to-stone-brown/40 border border-golden-beige/20 rounded-lg p-4 sm:p-6 hover:border-blessed-yellow/40 hover:shadow-lg transition-all duration-300 group"
+                className="bg-gradient-to-r from-stone-brown/60 to-stone-brown/40 border border-golden-beige/20 rounded-lg p-4 sm:p-6 hover:border-blessed-yellow/40 hover:shadow-lg transition-all duration-300"
               >
                 <div className="flex justify-between items-start mb-4">
                   <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="text-xl">{serviceLabels[item.serviceType].split(" ")[0]}</span>
-                      <p className="text-blessed-yellow font-semibold">{serviceLabels[item.serviceType].split(" ").slice(1).join(" ")}</p>
-                    </div>
+                    <p className="text-blessed-yellow font-semibold">{serviceLabels[item.serviceType]}</p>
                     <p className="text-sacred-white/60 text-xs">
                       {new Date(item.submittedAt).toLocaleString()}
                     </p>
@@ -335,7 +377,6 @@ export default function FeedbackDashboard() {
                     <button
                       onClick={() => setSelectedFeedback(item)}
                       className="p-2 bg-golden-beige/20 border border-golden-beige/40 text-golden-beige rounded-lg hover:bg-golden-beige/30 transition-all duration-300"
-                      title="View Details"
                     >
                       <Eye size={18} />
                     </button>
@@ -343,14 +384,12 @@ export default function FeedbackDashboard() {
                       onClick={() => handleDeleteFeedback(item.id)}
                       disabled={deleting === item.id}
                       className="p-2 bg-divine-red/20 border border-divine-red/40 text-divine-red rounded-lg hover:bg-divine-red/30 transition-all duration-300 disabled:opacity-50"
-                      title="Delete"
                     >
                       <Trash2 size={18} />
                     </button>
                   </div>
                 </div>
 
-                {/* Stats Grid */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 mb-4">
                   <div className="bg-stone-brown/40 rounded p-3 border border-golden-beige/10">
                     <p className="text-sacred-white/70 text-xs font-medium mb-1">Expectation</p>
@@ -370,7 +409,6 @@ export default function FeedbackDashboard() {
                   </div>
                 </div>
 
-                {/* Comment */}
                 {item.comment && (
                   <div className="bg-stone-brown/20 rounded p-3 border-l-2 border-blessed-yellow">
                     <p className="text-sacred-white/80 text-sm italic">"{item.comment}"</p>
