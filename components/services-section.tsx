@@ -1,4 +1,5 @@
-"use client";
+import { Services } from "@/components/services"
+// Then use: <Services />
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";

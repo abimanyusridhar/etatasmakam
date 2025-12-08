@@ -2,6 +2,7 @@
 
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
+import { About } from "@/components/about"
 
 export function AboutSection() {
   const features = [
