@@ -26,7 +26,6 @@ export default function FeedbackDashboard() {
   const [searchTerm, setSearchTerm] = useState("")
   const [deleting, setDeleting] = useState<string | null>(null)
   const [loginError, setLoginError] = useState("")
-  const [showPassword, setShowPassword] = useState(false)
 
   const serviceLabels: Record<string, string> = {
     pickup: "🏪 Pickup at Counter",
@@ -54,12 +53,12 @@ export default function FeedbackDashboard() {
         setIsAuthenticated(true)
         fetchFeedback()
       } else if (response.status === 401) {
-        setLoginError("Invalid password. Please check your .env.local file or contact the administrator.")
+        setLoginError("Invalid password")
       } else {
-        setLoginError("Authentication failed. Please try again.")
+        setLoginError("Authentication failed")
       }
     } catch (error) {
-      setLoginError("Connection error. Please ensure the server is running.")
+      setLoginError("Connection error")
       console.error("Auth error:", error)
     }
   }
@@ -168,31 +167,22 @@ export default function FeedbackDashboard() {
     return (
       <div className="min-h-screen bg-gradient-to-b from-stone-brown to-stone-brown/80 flex items-center justify-center p-4">
         <div className="bg-stone-brown border border-golden-beige/30 rounded-2xl p-8 max-w-md w-full shadow-2xl">
-          <h1 className="text-3xl font-bold text-blessed-yellow mb-2 text-center">Feedback Admin</h1>
-          <p className="text-sacred-white/60 text-center text-sm mb-8">Secure Dashboard</p>
+          <h1 className="text-3xl font-bold text-blessed-yellow mb-2 text-center">Admin Dashboard</h1>
+          <p className="text-sacred-white/60 text-center text-sm mb-8">Feedback Management</p>
           
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
-              <label className="block text-golden-beige font-semibold mb-2">Admin Password</label>
-              <div className="relative">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  value={password}
-                  onChange={(e) => {
-                    setPassword(e.target.value)
-                    setLoginError("")
-                  }}
-                  placeholder="Enter admin password"
-                  className="w-full px-4 py-3 rounded-lg bg-sacred-white text-stone-brown placeholder-stone-brown/40 font-medium focus:outline-none focus:ring-2 focus:ring-blessed-yellow"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-3 text-stone-brown/60 hover:text-stone-brown"
-                >
-                  {showPassword ? "Hide" : "Show"}
-                </button>
-              </div>
+              <label className="block text-golden-beige font-semibold mb-2">Password</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value)
+                  setLoginError("")
+                }}
+                placeholder="Enter password"
+                className="w-full px-4 py-3 rounded-lg bg-sacred-white text-stone-brown placeholder-stone-brown/40 font-medium focus:outline-none focus:ring-2 focus:ring-blessed-yellow"
+              />
             </div>
 
             {loginError && (
@@ -209,32 +199,6 @@ export default function FeedbackDashboard() {
               Login
             </button>
           </form>
-
-          <div className="mt-6 space-y-3 border-t border-golden-beige/20 pt-6">
-            <p className="text-sacred-white/60 text-xs font-medium">Password Reset Options:</p>
-            
-            <div className="bg-golden-beige/10 border border-golden-beige/20 rounded-lg p-3 space-y-2">
-              <p className="text-sacred-white/80 text-xs">
-                <span className="font-semibold text-blessed-yellow">Option 1:</span> Check your <code className="bg-stone-brown/60 px-1.5 py-0.5 rounded text-xs">.env.local</code> file for <code className="bg-stone-brown/60 px-1.5 py-0.5 rounded text-xs">ADMIN_PASSWORD</code>
-              </p>
-            </div>
-
-            <div className="bg-golden-beige/10 border border-golden-beige/20 rounded-lg p-3 space-y-2">
-              <p className="text-sacred-white/80 text-xs">
-                <span className="font-semibold text-blessed-yellow">Option 2:</span> Default password in production is <code className="bg-stone-brown/60 px-1.5 py-0.5 rounded text-xs font-mono">admin123</code> (change immediately!)
-              </p>
-            </div>
-
-            <div className="bg-blessing-green/10 border border-blessing-green/20 rounded-lg p-3 space-y-2">
-              <p className="text-sacred-white/80 text-xs">
-                <span className="font-semibold text-blessing-green">Option 3:</span> Contact your administrator to reset the password via environment variables
-              </p>
-            </div>
-          </div>
-
-          <p className="text-sacred-white/50 text-xs text-center mt-6">
-            ETAT ASMAKAM Admin Dashboard v1.0
-          </p>
         </div>
       </div>
     )
@@ -250,7 +214,7 @@ export default function FeedbackDashboard() {
         <div className="flex justify-between items-center mb-8">
           <div>
             <h1 className="text-3xl sm:text-4xl font-bold text-blessed-yellow">Feedback Dashboard</h1>
-            <p className="text-sacred-white/60 text-sm mt-1">Manage and analyze customer feedback</p>
+            <p className="text-sacred-white/60 text-sm mt-1">Customer feedback & reviews</p>
           </div>
           <button
             onClick={() => {
