@@ -3,7 +3,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { useState, useEffect } from "react"
-import { Menu, X, Clock, CheckCircle, Star } from "lucide-react"
+import { Menu, X, Clock, CheckCircle, Star, ShoppingCart, Phone } from "lucide-react"
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -38,6 +38,8 @@ export function Header() {
       element.scrollIntoView({ behavior: "smooth" })
     }
   }
+
+  const phoneNumber = "7259322466"
 
   return (
     <>
@@ -118,13 +120,11 @@ export function Header() {
                 {/* Order Now Button - Desktop & Tablet */}
                 <Link
                   href="/order"
-                  className="hidden sm:block luxury-gradient px-4 sm:px-5 lg:px-7 py-2.5 rounded-lg text-stone-brown font-semibold text-xs sm:text-sm transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blessed-yellow/50 focus:ring-offset-2 focus:ring-offset-stone-brown hover:shadow-lg hover:shadow-blessed-yellow/40 transform hover:scale-105 relative overflow-hidden group"
+                  className="luxury-gradient text-stone-brown font-bold py-2 px-4 sm:px-6 rounded-lg flex items-center gap-2 text-sm sm:text-base hover:shadow-lg transition-all duration-300 transform hover:scale-105 relative overflow-hidden group"
                 >
-                  <span className="relative z-10 flex items-center gap-2">
-                    🛒 Order
-                    <span className="hidden sm:inline">Now</span>
-                  </span>
-                  <div className="absolute inset-0 bg-divine-red/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <ShoppingCart size={18} />
+                  <span className="hidden sm:inline">Order Now</span>
+                  <span className="sm:hidden">Order</span>
                 </Link>
 
                 {/* Mobile Menu Button */}

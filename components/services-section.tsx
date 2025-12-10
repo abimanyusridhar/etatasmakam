@@ -1,7 +1,7 @@
-import { Services } from "@/components/services"
-// Then use: <Services />
+"use client"
 
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 export function ServicesSection() {
@@ -10,29 +10,31 @@ export function ServicesSection() {
   const handleNavigation = (cta: string) => {
     switch (cta) {
       case "View Menu":
-        router.push("/menu");
-        break;
+        document.getElementById('menu')?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        })
+        break
       case "Book Catering":
       case "Pickup Now":
-        // Smooth scroll to footer for contact information
         document.getElementById('footer')?.scrollIntoView({
           behavior: 'smooth',
           block: 'start'
-        });
-        break;
+        })
+        break
       case "Order 24/7":
-        router.push("/#order");
-        break;
+        router.push('/order');
+        break
       default:
-        break;
+        break
     }
-  };
+  }
 
   const services = [
     {
       title: "Offline Cart Pickup",
       description: "Quick and convenient offline cart pickups — grab your freshly prepared meals while they stay hot and delicious.",
-      icon: "/icons/cart.png",
+      icon: "🏪",
       features: [
         "Easy Pickup",
         "Fresh Preparation",
@@ -44,7 +46,7 @@ export function ServicesSection() {
     {
       title: "24/7 Online Delivery",
       description: "Order anytime — we deliver round-the-clock so you can satisfy midnight veg cravings with reliable, fast delivery.",
-      icon: "/icons/delivery.png",
+      icon: "🚚",
       features: [
         "Round-the-clock Service",
         "Live Tracking",
@@ -56,7 +58,7 @@ export function ServicesSection() {
     {
       title: "Private Party Catering",
       description: "Tailored catering for private parties and events — premium presentation and consistent taste for gatherings of any size.",
-      icon: "/icons/catering.png",
+      icon: "🍽️",
       features: [
         "Custom Menus",
         "Professional Staff",
@@ -68,7 +70,7 @@ export function ServicesSection() {
     {
       title: "Pure Veg • Premium & Affordable",
       description: "100% pure vegetarian menu crafted with premium ingredients — top-notch quality at affordable prices.",
-      icon: "/icons/veg.png",
+      icon: "✨",
       features: [
         "100% Pure Veg",
         "Premium Ingredients",
@@ -77,7 +79,7 @@ export function ServicesSection() {
       ],
       cta: "View Menu"
     }
-  ];
+  ]
 
   return (
     <section id="services" className="py-16 sm:py-24 relative overflow-hidden">
@@ -102,14 +104,8 @@ export function ServicesSection() {
             >
               <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
                 <div className="flex-shrink-0 w-full sm:w-auto">
-                  <div className="bg-golden-beige/10 p-3 sm:p-4 rounded-lg sm:rounded-xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 w-fit">
-                    <Image
-                      src={service.icon}
-                      alt={service.title}
-                      width={44}
-                      height={44}
-                      className="object-contain sm:w-12 sm:h-12"
-                    />
+                  <div className="bg-golden-beige/10 p-3 sm:p-4 rounded-lg sm:rounded-xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 w-fit text-3xl sm:text-4xl">
+                    {service.icon}
                   </div>
                 </div>
                 <div className="space-y-3 sm:space-y-4 flex-1">
@@ -134,7 +130,7 @@ export function ServicesSection() {
 
                   <button
                     onClick={() => handleNavigation(service.cta)}
-                    className="mt-4 sm:mt-6 w-full luxury-gradient text-stone-brown font-semibold py-2.5 sm:py-3 rounded-lg text-sm sm:text-base hover:opacity-90 transition-opacity duration-300 group-hover:sacred-glow"
+                    className="mt-4 sm:mt-6 w-full luxury-gradient text-stone-brown font-semibold py-2.5 sm:py-3 px-4 rounded-lg text-sm sm:text-base hover:opacity-90 transition-opacity duration-300 group-hover:shadow-lg transform hover:scale-105"
                   >
                     {service.cta}
                   </button>
@@ -149,11 +145,11 @@ export function ServicesSection() {
 
         {/* CTA Box */}
         <div className="mt-12 sm:mt-16 text-center">
-          <div className="royal-card inline-block px-4 sm:px-8 py-4 sm:py-6 rounded-lg sm:rounded-2xl backdrop-blur-lg border border-golden-beige/30">
+          <div className="royal-card inline-block px-4 sm:px-8 py-4 sm:py-6 rounded-lg sm:rounded-2xl backdrop-blur-lg border border-golden-beige/30 hover-lift">
             <p className="text-base sm:text-xl text-sacred-white mb-3 sm:mb-4">Ready to order?</p>
             <a
               href="tel:7259322466"
-              className="luxury-gradient px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg text-stone-brown font-semibold hover-lift sacred-glow inline-flex items-center justify-center gap-2 text-sm sm:text-base"
+              className="luxury-gradient px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg text-stone-brown font-semibold inline-flex items-center justify-center gap-2 text-sm sm:text-base shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
             >
               <span>📞</span> Call / Order (24x7)
             </a>
@@ -166,5 +162,5 @@ export function ServicesSection() {
       <div className="absolute bottom-20 left-0 w-72 h-72 bg-blessed-yellow/5 blur-[100px] rounded-full animate-pulse" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-radial from-golden-beige/5 to-transparent opacity-30" />
     </section>
-  );
+  )
 }

@@ -6,7 +6,7 @@ import { HeroSection } from "@/components/hero-section"
 import { ServicesSection } from "@/components/services-section"
 import { AboutSection } from "@/components/about-section"
 import { MenuSection } from "@/components/menu-section"
-import { FeedbackForm } from "@/components/feedback-form"
+import { FeedbackSection } from "@/components/feedback-section"
 
 function LoadingFallback() {
   return <div className="w-full h-screen loading-shimmer" />
@@ -24,9 +24,7 @@ export default function Home() {
           <ServicesSection />
           <AboutSection />
           <MenuSection />
-          <FeedbackForm isOpen={false} onClose={function (): void {
-            throw new Error("Function not implemented.")
-          } } />
+          <FeedbackSection />
         </Suspense>
       </div>
     </main>

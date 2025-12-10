@@ -36,7 +36,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={poppins.variable}>
-      <body className={`font-sans antialiased bg-stone-brown text-sacred-white min-h-screen`}>
+      <body className="font-sans antialiased bg-stone-brown text-sacred-white min-h-screen">
         <div className="relative z-0">
           {children}
         </div>
