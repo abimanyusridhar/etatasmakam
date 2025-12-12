@@ -123,25 +123,25 @@ export function Footer() {
                 onClick={() => handleScroll("#menu")}
                 className="text-left text-blessed-yellow hover:text-divine-red transition-colors font-medium"
               >
-                📖 Menu
+                Menu
               </button>
               <button
                 onClick={() => handleScroll("#services")}
                 className="text-left text-blessed-yellow hover:text-divine-red transition-colors font-medium"
               >
-                🍽️ Services
+                 Services
               </button>
               <button
                 onClick={() => handleScroll("#feedback")}
                 className="text-left text-blessed-yellow hover:text-divine-red transition-colors font-medium"
               >
-                💬 Feedback
+                 Feedback
               </button>
               <a href={`tel:${phoneNumber}`} className="text-blessed-yellow hover:text-divine-red transition-colors font-medium">
-                📞 Call Us
+                 Call Us
               </a>
               <Link href="/order" className="text-blessed-yellow hover:text-divine-red transition-colors font-medium">
-                🛒 Order Now
+                 Order Now
               </Link>
             </div>
           </div>

@@ -93,7 +93,7 @@ export default function OrderPage() {
                         <p className="text-2xl font-bold text-blessing-green">{phoneNumber}</p>
                       </div>
                     </div>
-                    <span className="text-3xl">📱</span>
+                    <span className="text-3xl"></span>
                   </a>
 
                   <a
@@ -107,7 +107,7 @@ export default function OrderPage() {
                         <p className="text-2xl font-bold text-divine-red">{alternatePhone}</p>
                       </div>
                     </div>
-                    <span className="text-3xl">📱</span>
+                    <span className="text-3xl"></span>
                   </a>
                 </div>
 
@@ -126,7 +126,7 @@ export default function OrderPage() {
                         <p className="text-lg font-bold text-blessed-yellow">WhatsApp Message</p>
                       </div>
                     </div>
-                    <span className="text-3xl">💬</span>
+                    <span className="text-3xl"></span>
                   </a>
                 </div>
               </div>

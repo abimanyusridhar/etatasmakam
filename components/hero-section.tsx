@@ -31,7 +31,7 @@ export function HeroSection() {
           <div className="text-center space-y-6 sm:space-y-8">
             <div className="space-y-3 sm:space-y-4">
               <span className="inline-block text-blessed-yellow text-xs sm:text-sm font-bold bg-golden-beige/15 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full uppercase tracking-widest">
-                🏆 Premium Authentic Cuisine
+                 Premium Authentic Cuisine
               </span>
               <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-2 sm:mb-4 golden-text animate-fade-in leading-tight">
                 ETAT ASMAKAM
@@ -53,7 +53,7 @@ export function HeroSection() {
                 onClick={() => handleScroll("#menu")}
                 className="luxury-gradient text-stone-brown font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover-lift sacred-glow text-sm sm:text-lg w-full sm:w-auto transition-all duration-300 shadow-lg"
               >
-                🍲 Explore Menu
+                 Explore Menu
               </button>
               <Link
                 href="/order"
@@ -65,9 +65,9 @@ export function HeroSection() {
 
             <div className="pt-6 sm:pt-8 mt-6 sm:mt-8 border-t border-golden-beige/20 grid grid-cols-3 gap-2 sm:gap-4">
               {[
-                { icon: "🕐", label: "24/7 Delivery", desc: "Round the clock" },
-                { icon: "👨‍🍳", label: "Expert Chefs", desc: "Premium quality" },
-                { icon: "🌱", label: "100% Veg", desc: "Pure & fresh" }
+                { icon: "", label: "24/7 Delivery", desc: "Round the clock" },
+                { icon: "", label: "Expert Chefs", desc: "Premium quality" },
+                { icon: "", label: "100% Veg", desc: "Pure & fresh" }
               ].map((stat, idx) => (
                 <div key={idx} className="text-center space-y-1 sm:space-y-2">
                   <div className="text-2xl sm:text-3xl">{stat.icon}</div>

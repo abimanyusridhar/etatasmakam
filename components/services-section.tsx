@@ -34,7 +34,7 @@ export function ServicesSection() {
     {
       title: "Offline Cart Pickup",
       description: "Quick and convenient offline cart pickups — grab your freshly prepared meals while they stay hot and delicious.",
-      icon: "🏪",
+      icon: "",
       features: [
         "Easy Pickup",
         "Fresh Preparation",
@@ -46,7 +46,7 @@ export function ServicesSection() {
     {
       title: "24/7 Online Delivery",
       description: "Order anytime — we deliver round-the-clock so you can satisfy midnight veg cravings with reliable, fast delivery.",
-      icon: "🚚",
+      icon: "",
       features: [
         "Round-the-clock Service",
         "Live Tracking",
@@ -58,7 +58,7 @@ export function ServicesSection() {
     {
       title: "Private Party Catering",
       description: "Tailored catering for private parties and events — premium presentation and consistent taste for gatherings of any size.",
-      icon: "🍽️",
+      icon: "",
       features: [
         "Custom Menus",
         "Professional Staff",
@@ -70,7 +70,7 @@ export function ServicesSection() {
     {
       title: "Pure Veg • Premium & Affordable",
       description: "100% pure vegetarian menu crafted with premium ingredients — top-notch quality at affordable prices.",
-      icon: "✨",
+      icon: "",
       features: [
         "100% Pure Veg",
         "Premium Ingredients",
