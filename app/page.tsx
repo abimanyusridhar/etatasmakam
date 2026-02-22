@@ -14,8 +14,8 @@ function LoadingFallback() {
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-stone-brown relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-stone-brown/95 to-stone-brown pointer-events-none" />
+    <main className="min-h-screen bg-stone relative overflow-x-hidden">
+      <div className="sacred-overlay pointer-events-none" aria-hidden="true" />
 
       <div className="relative z-10">
         <Suspense fallback={<LoadingFallback />}>

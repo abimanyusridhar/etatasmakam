@@ -1,146 +1,150 @@
-/* Refined color palette and utilities for ETAT ASMAKAM */
-/* Primary palette: Stone Brown, Divine Red, Blessed Yellow, Golden Beige, Sacred White */
+/* ═══════════════════════════════════════════════════════════
+   ETAT ASMAKAM — Refined Color Palette & Design Tokens
+   Karnataka Royal Cuisine | Authentic · Heritage · Sacred
+   ═══════════════════════════════════════════════════════════ */
 
 :root {
-  /* Core colors (refined) */
-  --divine-red: #E53935;
-  --divine-red-700: #c62828;
+  /* ── Core Brand Palette ── */
+  --divine-red:          #B71C1C;
+  --divine-red-light:    #E53935;
+  --divine-red-vivid:    #FF3D3D;
+  --divine-red-glow:     rgba(183, 28, 28, 0.22);
+  --divine-red-mute:     rgba(183, 28, 28, 0.10);
 
-  --sacred-white: #FFFFFF;
-  --sacred-white-off: #f5f5f5;
+  --sacred-white:        #FEF9F0;
+  --sacred-white-dim:    #EDE0CC;
+  --sacred-white-ghost:  rgba(254, 249, 240, 0.07);
 
-  --blessed-yellow: #FFEB3B;
-  --blessed-yellow-700: #fbc02d;
+  --blessed-yellow:      #F5C518;
+  --blessed-yellow-warm: #F0B429;
+  --blessed-yellow-mute: rgba(245, 197, 24, 0.12);
 
-  --golden-beige: #D4AF35;
-  --golden-beige-700: #b38f24;
+  --golden-beige:        #C8973A;
+  --golden-beige-light:  #E8B84B;
+  --golden-beige-pale:   #F2D28A;
+  --golden-beige-mute:   rgba(200, 151, 58, 0.10);
+  --golden-beige-glow:   rgba(200, 151, 58, 0.18);
 
-  --stone-brown: #4E342E;
-  --stone-brown-700: #3e2723;
+  --stone-brown:         #130C05;
+  --stone-brown-mid:     #1F1108;
+  --stone-brown-warm:    #2C1A0A;
+  --stone-brown-raised:  #3A2310;
+  --stone-brown-highlight: #48300F;
 
-  /* Semantic tokens */
-  --palette-accent: var(--divine-red);
-  --palette-bg: var(--sacred-white);
-  --palette-surface: var(--golden-beige);
-  --palette-text: var(--stone-brown);
-  --palette-highlight: var(--blessed-yellow);
+  --spice-amber:         #A0521A;
+  --spice-amber-light:   #C96B1E;
 
-  /* Overlay colors */
-  --stone-brown-02: rgba(78, 52, 46, 0.02);
-  --stone-brown-06: rgba(78, 52, 46, 0.06);
-  --divine-red-06: rgba(229, 57, 53, 0.06);
-  --divine-red-10: rgba(229, 57, 53, 0.10);
+  --ink:                 #080402;
+  --cream:               #FDF5E8;
 
-  /* Accessibility helpers */
-  --contrast-text-on-accent: #fff;
-  --focus-ring: rgba(185,41,34,0.20);
+  /* ── Semantic Tokens ── */
+  --bg:                  var(--stone-brown);
+  --bg-surface:          var(--stone-brown-mid);
+  --bg-raised:           var(--stone-brown-warm);
+  --bg-elevated:         var(--stone-brown-raised);
+  --bg-highlight:        var(--stone-brown-highlight);
+  --text-primary:        var(--sacred-white);
+  --text-secondary:      rgba(254, 249, 240, 0.68);
+  --text-muted:          rgba(254, 249, 240, 0.36);
+  --text-ghost:          rgba(254, 249, 240, 0.15);
+  --accent:              var(--golden-beige);
+  --accent-bright:       var(--blessed-yellow);
+  --accent-pale:         var(--golden-beige-pale);
+  --accent-cta:          var(--divine-red-light);
+
+  /* ── Borders & Dividers ── */
+  --border-gold:         rgba(200, 151, 58, 0.20);
+  --border-gold-mid:     rgba(200, 151, 58, 0.32);
+  --border-gold-strong:  rgba(200, 151, 58, 0.50);
+  --border-subtle:       rgba(254, 249, 240, 0.05);
+  --border-mid:          rgba(254, 249, 240, 0.10);
+  --border-red:          rgba(229, 57, 53, 0.25);
+
+  /* ── Overlays ── */
+  --overlay-dark:        rgba(8, 4, 2, 0.68);
+  --overlay-warm:        rgba(19, 12, 5, 0.52);
+  --overlay-gold:        rgba(200, 151, 58, 0.05);
+
+  /* ── Focus Ring ── */
+  --focus-ring:          rgba(245, 197, 24, 0.42);
+
+  /* ── Radius ── */
+  --radius-xs:           4px;
+  --radius-sm:           8px;
+  --radius:              14px;
+  --radius-lg:           22px;
+  --radius-xl:           36px;
+  --radius-pill:         999px;
+
+  /* ── Spacing Scale ── */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-32: 128px;
+
+  /* ── Typography ── */
+  --font-display:  'Cormorant Garamond', 'Georgia', serif;
+  --font-body:     'DM Sans', 'Helvetica Neue', sans-serif;
+  --font-accent:   'Cinzel', serif;
+
+  /* ── Font Sizes ── */
+  --text-xs:   0.6875rem;  /* 11px */
+  --text-sm:   0.8125rem;  /* 13px */
+  --text-base: 1rem;       /* 16px */
+  --text-lg:   1.125rem;   /* 18px */
+  --text-xl:   1.375rem;   /* 22px */
+  --text-2xl:  1.75rem;    /* 28px */
+
+  /* ── Line Heights ── */
+  --leading-tight:  1.1;
+  --leading-snug:   1.25;
+  --leading-normal: 1.6;
+  --leading-loose:  1.85;
+
+  /* ── Letter Spacing ── */
+  --tracking-tight:    -0.02em;
+  --tracking-normal:   0;
+  --tracking-wide:     0.08em;
+  --tracking-wider:    0.14em;
+  --tracking-widest:   0.22em;
+
+  /* ── Shadows ── */
+  --shadow-xs:    0 1px 4px rgba(0,0,0,0.28);
+  --shadow-sm:    0 2px 10px rgba(0,0,0,0.36);
+  --shadow-md:    0 8px 28px rgba(0,0,0,0.44);
+  --shadow-lg:    0 20px 52px rgba(0,0,0,0.55);
+  --shadow-xl:    0 40px 80px rgba(0,0,0,0.65);
+  --shadow-gold:  0 4px 24px rgba(200,151,58,0.22), 0 0 48px rgba(200,151,58,0.08);
+  --shadow-gold-strong: 0 8px 40px rgba(200,151,58,0.35), 0 0 80px rgba(200,151,58,0.12);
+  --shadow-red:   0 8px 32px rgba(183,28,28,0.28);
+  --shadow-red-strong: 0 12px 48px rgba(183,28,28,0.42);
+  --shadow-inset: inset 0 1px 0 rgba(255,255,255,0.10), inset 0 -1px 0 rgba(0,0,0,0.20);
+
+  /* ── Transitions ── */
+  --ease-royal:    cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-royal: cubic-bezier(0.64, 0, 0.78, 0);
+  --ease-spring:   cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-fast: 160ms;
+  --duration-mid:  300ms;
+  --duration-slow: 560ms;
+  --duration-lazy: 900ms;
+
+  /* ── Z-Index Scale ── */
+  --z-below:    -1;
+  --z-base:      0;
+  --z-raised:   10;
+  --z-overlay:  20;
+  --z-sticky:   30;
+  --z-modal:    40;
+  --z-toast:    50;
+  --z-top:      60;
 }
-
-/* Overlay used throughout for warm tint */
-.sacred-overlay {
-  pointer-events: none;
-  background: linear-gradient(180deg,
-    rgba(255, 255, 255, 0.1),
-    rgba(212, 175, 53, 0.05),
-    rgba(78, 52, 46, 0.08)
-  );
-  mix-blend-mode: overlay;
-}
-
-/* Slightly stronger hero overlay */
-.hero-strong-overlay {
-  background: radial-gradient(ellipse at center,
-    rgba(185,41,34,0.18), rgba(83,54,34,0.12));
-}
-
-/* Subtle card overlay (used instead of from-black/30 etc.) */
-.bg-card-overlay {
-  background: linear-gradient(180deg,
-    rgba(20,16,14,0.04),
-    rgba(20,16,14,0.02));
-}
-
-/* Small backdrop card for content panels */
-.backdrop-card {
-  background: linear-gradient(180deg, rgba(255,252,247,0.88), rgba(235,220,200,0.86));
-  border: 1px solid var(--stone-brown-06);
-  border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(22,12,8,0.10);
-}
-
-/* Text utilities */
-.golden-text {
-  color: var(--golden-beige);
-  text-shadow: 0 2px 10px rgba(36,22,16,0.28);
-  font-weight: 700;
-}
-
-.text-sacred-beige { color: rgba(231,204,176,0.96); }
-.text-stone-rich { color: var(--stone-brown); }
-.text-foreground { color: rgba(20,16,14,0.92); }
-
-/* Accent / CTA */
-.accent {
-  background-color: var(--palette-accent);
-  color: var(--contrast-text-on-accent);
-  border-radius: 8px;
-  border: 1px solid var(--divine-red-06);
-  box-shadow: 0 8px 24px rgba(185,41,34,0.08);
-}
-.accent-foreground { color: var(--contrast-text-on-accent); }
-
-/* Subtle accent surface for small badges and list highlights */
-.bg-accent-subtle { background-color: var(--divine-red-10); color: var(--palette-accent); }
-.bg-accent-10 { background-color: rgba(185,41,34,0.10); }
-.hover-bg-accent-subtle { transition: background-color 180ms ease; }
-.hover-bg-accent-subtle:hover { background-color: rgba(185,41,34,0.06); }
-
-/* Enhanced gradient utilities */
-.luxury-gradient {
-  background: linear-gradient(135deg,
-    var(--blessed-yellow) 0%,
-    var(--golden-beige) 50%,
-    var(--stone-brown) 100%
-  );
-  color: var(--sacred-white);
-}
-
-/* Cards and surfaces */
-.royal-card {
-  background: linear-gradient(145deg,
-    rgba(255, 255, 255, 0.95),
-    rgba(212, 175, 53, 0.1)
-  );
-  border: 1px solid rgba(78, 52, 46, 0.1);
-  border-radius: 12px;
-  box-shadow: 0 12px 36px rgba(22,12,8,0.12);
-  color: var(--palette-text);
-}
-
-.bg-card {
-  background: linear-gradient(180deg, rgba(247,240,233,0.98), rgba(235,220,200,0.9));
-  color: var(--palette-text);
-}
-
-/* Borders & focus */
-.border-border { border-color: var(--stone-brown-06) !important; }
-.outline-focus {
-  outline: 3px solid var(--focus-ring);
-  outline-offset: 2px;
-}
-
-/* Hover / lift */
-.hover-lift {
-  transition: transform 200ms ease, box-shadow 200ms ease;
-}
-.hover-lift:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 18px 48px rgba(22,12,8,0.16);
-}
-
-/* Small helpers */
-.smooth-transition { transition: all 0.28s cubic-bezier(.4,0,.2,1); }
-.sacred-glow { box-shadow: 0 0 22px rgba(250,229,196,0.12); }
-
-/* Accessibility: ensure buttons and links have minimum contrast */
-.ensure-contrast-on-accent { color: var(--contrast-text-on-accent); }
