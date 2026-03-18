@@ -154,11 +154,11 @@
    ═══════════════════════════════════════════════════════════ */
 .vastra-theme {
   /* ── Core Brand Palette (Green base) ── */
-  --stone-brown:         #0A1209;
-  --stone-brown-mid:     #101C10;
-  --stone-brown-warm:    #162816;
-  --stone-brown-raised:  #1D351D;
-  --stone-brown-highlight: #254225;
+  --stone-brown:         #1E2712;
+  --stone-brown-mid:     #242D18;
+  --stone-brown-warm:    #2A331E;
+  --stone-brown-raised:  #303924;
+  --stone-brown-highlight: #36402A;
 
   /* ── Map Red to a brighter Gold for Vasthra ── */
   --divine-red:          #E2BB58;

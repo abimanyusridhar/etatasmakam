@@ -83,20 +83,30 @@ export function VastraServices() {
           {services.map((service, index) => (
             <div
               key={index}
-              className="glass-card hover:bg-stone-brown-raised/60 hover:border-golden-beige/50 transition-all duration-300 p-6 sm:p-8 rounded-xl sm:rounded-2xl hover-lift group animate-fade-in backdrop-blur-lg"
+              className="relative group h-full rounded-[1.5rem] animate-slide-up"
               style={{ animationDelay: `${index * 150}ms` }}
             >
-              <div className="flex flex-col sm:flex-row items-start gap-5 sm:gap-6">
-                <div className="flex-shrink-0 w-full sm:w-auto">
-                  <div className="bg-golden-beige/5 p-4 rounded-xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 w-fit text-4xl shadow-[inset_0_0_20px_rgba(200,151,58,0.1)] border border-golden-beige/10">
-                    {service.icon}
+              <div className="absolute inset-0 bg-gradient-to-br from-golden-beige/20 via-transparent to-transparent rounded-[1.5rem] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none blur-sm"></div>
+              <div className="relative h-full bg-stone-brown-mid/80 backdrop-blur-2xl border border-golden-beige/15 group-hover:border-golden-beige/40 transition-all duration-500 p-6 sm:p-8 rounded-[1.5rem] group-hover:-translate-y-2 shadow-2xl overflow-hidden flex flex-col sm:flex-row gap-6">
+                
+                {/* Background decorative glow */}
+                <div className="absolute -top-10 -right-10 w-40 h-40 bg-golden-beige/5 rounded-full blur-[40px] pointer-events-none group-hover:bg-golden-beige/10 transition-colors duration-700"></div>
+
+                <div className="flex-shrink-0 w-full sm:w-auto relative z-10">
+                  <div className="relative group/icon inline-block">
+                    <div className="absolute inset-0 bg-gradient-to-tr from-golden-beige to-blessed-yellow blur-md opacity-0 group-hover:opacity-30 transition-opacity duration-500 rounded-2xl"></div>
+                    <div className="relative bg-stone-brown-raised/90 backdrop-blur-sm border-t border-l border-golden-beige/30 shadow-[0_8px_16px_rgba(0,0,0,0.4)] group-hover/icon:shadow-[0_15px_30px_rgba(200,151,58,0.2)] p-4 sm:p-5 rounded-2xl group-hover/icon:scale-110 group-hover/icon:-rotate-6 transition-all duration-500 w-fit text-4xl flex items-center justify-center">
+                      {service.icon}
+                    </div>
                   </div>
                 </div>
-                <div className="space-y-3 sm:space-y-4 flex-1">
-                  <h3 className="text-xl sm:text-2xl font-bold golden-text group-hover:text-blessed-yellow transition-colors duration-300">
-                    {service.title}
-                  </h3>
-                  <p className="text-sacred-white/80 text-sm sm:text-base leading-relaxed">
+
+                <div className="space-y-3 sm:space-y-4 flex-1 relative z-10 flex flex-col justify-between">
+                  <div>
+                    <h3 className="text-xl sm:text-2xl font-bold golden-text group-hover:text-blessed-yellow transition-colors duration-300">
+                      {service.title}
+                    </h3>
+                    <p className="text-sacred-white/70 text-sm sm:text-base leading-relaxed mt-2 group-hover:text-sacred-white/90 transition-colors duration-300">
                     {service.description}
                   </p>
 
@@ -112,11 +122,14 @@ export function VastraServices() {
                     ))}
                   </ul>
 
+                  </div>
+
                   <button
                     onClick={() => handleNavigation(service.target)}
-                    className="mt-6 flex items-center gap-2 text-golden-beige font-semibold text-sm hover:text-blessed-yellow transition-colors group-hover:translate-x-1 duration-300"
+                    className="mt-6 font-bold text-sm text-stone-brown bg-gradient-to-r from-golden-beige to-blessed-yellow px-6 py-2.5 rounded-lg shadow-lg hover:shadow-[0_0_15px_rgba(200,151,58,0.4)] transition-all duration-300 transform group-hover:-translate-y-1 self-start w-fit flex items-center gap-2"
                   >
-                    {service.cta}
+                    <span>{service.cta.replace('→', '').trim()}</span>
+                    <span className="text-stone-brown group-hover:translate-x-1 transition-transform duration-300">→</span>
                   </button>
                 </div>
               </div>

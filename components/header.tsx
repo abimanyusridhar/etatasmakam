@@ -44,7 +44,7 @@ export function Header() {
     }
   }
 
-  const phoneNumber = "7259322466"
+  const phoneNumber = "7204758766"
 
   return (
     <>
@@ -116,10 +116,10 @@ export function Header() {
               <div className="flex items-center gap-2 sm:gap-3 lg:gap-4 flex-shrink-0">
                 {/* Phone Link - Hidden on Mobile */}
                 <a
-                  href="tel:7259322466"
+                  href="tel:7204758766"
                   className="text-blessed-yellow text-sm font-semibold hover:text-divine-red transition-all duration-300 hidden lg:flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-golden-beige/10 focus:outline-none focus:ring-2 focus:ring-blessed-yellow/50"
                 >
-                  📞 7259322466
+                  📞 72047 58766
                 </a>
 
                 {/* Order Now Button - Desktop & Tablet */}
@@ -184,10 +184,10 @@ export function Header() {
 
                   {/* Contact & Feedback Links */}
                   <a
-                    href="tel:7259322466"
+                    href="tel:7204758766"
                     className="block w-full text-center text-blessed-yellow px-4 py-3 rounded-lg font-semibold text-sm border border-blessed-yellow/50 hover:bg-blessed-yellow/15 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blessed-yellow/50"
                   >
-                    📞 Call: 7259322466
+                    📞 Call: 72047 58766
                   </a>
                   
                   <a

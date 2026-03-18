@@ -3,47 +3,35 @@
 export function VastraPricing() {
   const plans = [
     {
-      title: "Regular Wash",
-      desc: "Clean and fresh",
-      emoji: "👕",
-      popular: false,
+      title: "Ironing",
+      desc: "Crisp and wrinkle-free",
+      emoji: "👔",
+      popular: true,
       items: [
-        { name: "T-Shirt / Shirt", price: "₹30" },
-        { name: "Pant / Jeans", price: "₹40" },
-        { name: "Saree", price: "₹60" },
-        { name: "Kurta / Kurti", price: "₹35" },
-        { name: "Bedsheet (single)", price: "₹50" },
-        { name: "Towel", price: "₹25" }
+        { name: "Shirt / T-Shirt", price: "₹15" },
+        { name: "Pant / Jeans", price: "₹15" },
+        { name: "Saree", price: "₹70" },
       ],
-      note: "Wash only. Drying included."
+      note: "Professional ironing for daily wear"
     },
     {
       title: "Wash + Iron",
       desc: "Washed, ironed and folded",
       emoji: "✨",
-      popular: true,
+      popular: false,
       items: [
-        { name: "T-Shirt / Shirt", price: "₹50" },
-        { name: "Pant / Jeans", price: "₹60" },
-        { name: "Saree", price: "₹90" },
-        { name: "Kurta / Kurti", price: "₹55" },
-        { name: "Bedsheet (single)", price: "₹70" },
-        { name: "Towel", price: "₹40" }
+        { name: "Shirt / T-Shirt", price: "₹66" },
+        { name: "Pant / Jeans", price: "₹66" },
       ],
       note: "Best value — fully ready to wear"
     },
     {
       title: "Dry Clean",
       desc: "Premium care for delicates",
-      emoji: "👔",
+      emoji: "🌟",
       popular: false,
       items: [
-        { name: "Suit / Blazer", price: "₹200" },
-        { name: "Sherwani", price: "₹300" },
-        { name: "Lehenga", price: "₹400" },
-        { name: "Curtains (pair)", price: "₹250" },
-        { name: "Woolen items", price: "₹150" },
-        { name: "Silk Saree", price: "₹150" }
+        { name: "All Items", price: "Depends on stains" }
       ],
       note: "Final cost confirmed before processing"
     }
@@ -65,12 +53,18 @@ export function VastraPricing() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {plans.map((plan, idx) => (
-            <div
-              key={idx}
-              className={`glass-card p-8 rounded-2xl relative transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(200,151,58,0.15)] flex flex-col ${
-                plan.popular ? 'border-golden-beige bg-gradient-to-b from-stone-brown-raised/90 to-stone-brown-mid/90' : 'border-golden-beige/20'
-              }`}
-            >
+            <div key={idx} className={`relative group h-full ${plan.popular ? 'z-10' : 'z-0'}`}>
+              {plan.popular && (
+                <div className="absolute -inset-0.5 bg-gradient-to-br from-blessed-yellow/40 via-golden-beige/20 to-transparent rounded-[1.1rem] blur-sm opacity-50 group-hover:opacity-100 group-hover:blur-md transition-all duration-700 pointer-events-none"></div>
+              )}
+              <div
+                className={`relative w-full h-full p-8 rounded-2xl transition-all duration-500 hover:-translate-y-2 flex flex-col backdrop-blur-xl border border-golden-beige/20 shadow-2xl overflow-hidden ${
+                  plan.popular ? 'bg-gradient-to-b from-stone-brown-raised to-stone-brown-mid border-golden-beige/50 shadow-[0_20px_40px_rgba(200,151,58,0.2)]' : 'bg-stone-brown-mid/60'
+                }`}
+              >
+                {plan.popular && (
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-blessed-yellow/10 blur-[40px] pointer-events-none"></div>
+                )}
               {plan.popular && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-blessed-yellow to-golden-beige text-stone-brown font-bold text-xs px-4 py-1.5 rounded-full uppercase tracking-wider shadow-lg">
                   Popular Choice
@@ -96,6 +90,7 @@ export function VastraPricing() {
 
               <div className="pt-4 mt-auto border-t border-sacred-white/10 text-center">
                 <p className="text-xs italic text-sacred-white/40">{plan.note}</p>
+              </div>
               </div>
             </div>
           ))}

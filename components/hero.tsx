@@ -146,10 +146,10 @@ export function Hero() {
 
               {/* Tertiary CTA - Call Us (Link Style, Minimal Visual Weight) */}
               <a
-                href="tel:7259322466"
+                href="tel:7204758766"
                 className="block w-full text-center text-blessed-yellow text-xs sm:text-sm font-semibold hover:text-divine-red transition-colors py-2 sm:py-3"
               >
-                or call us at 📞 7259322466
+                or call us at 📞 72047 58766
               </a>
             </div>
 

@@ -15,7 +15,7 @@ export function FeedbackSection() {
     { icon: MessageSquare, label: "Feedback Count", value: "1000+", color: "golden-beige" },
   ]
 
-  const phoneNumber = "7259322466"
+  const phoneNumber = "7204758766"
 
   const handleScroll = (target: string) => {
     const element = document.querySelector(target)

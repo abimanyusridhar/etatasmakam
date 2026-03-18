@@ -148,7 +148,7 @@ export function ServicesSection() {
           <div className="royal-card inline-block px-4 sm:px-8 py-4 sm:py-6 rounded-lg sm:rounded-2xl backdrop-blur-lg border border-golden-beige/30 hover-lift">
             <p className="text-base sm:text-xl text-sacred-white mb-3 sm:mb-4">Ready to order?</p>
             <a
-              href="tel:7259322466"
+              href="tel:7204758766"
               className="luxury-gradient px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg text-stone-brown font-semibold inline-flex items-center justify-center gap-2 text-sm sm:text-base shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
             >
               <span>📞</span> Call / Order (24x7)

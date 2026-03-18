@@ -4,7 +4,7 @@ import Link from "next/link"
 import { Instagram, Twitter, Facebook, Mail, Phone, MapPin } from "lucide-react"
 
 export function Footer() {
-  const phoneNumber = "7259322466"
+  const phoneNumber = "7204758766"
   const whatsappLink = `https://wa.me/91${phoneNumber}`
   const googleMapsLink = "https://maps.app.goo.gl/yBQHCYbxNLdPzQXp6?g_st=aw"
 

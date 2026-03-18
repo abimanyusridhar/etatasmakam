@@ -3,7 +3,7 @@ import type { Metadata, Viewport } from "next"
 import { Cormorant_Garamond, Cinzel, DM_Sans } from 'next/font/google'
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
-import { Footer } from '@/components/footer'
+import { GlobalFooter } from '@/components/global-footer'
 
 /* ─────────────────────────────────────────
    FONT DEFINITIONS
@@ -212,7 +212,7 @@ export default function RootLayout({
           </main>
 
           {/* Footer sits below page content */}
-          <Footer />
+          <GlobalFooter />
         </div>
 
         {/* Analytics */}

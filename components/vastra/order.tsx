@@ -33,13 +33,18 @@ export function VastraOrder() {
         setLocStatus("Location detected! ✅")
         
         if (!formData.address) {
-          fetch(`https://nominatim.openstreetmap.org/reverse?lat=${la}&lon=${lo}&format=json`)
+          fetch(`https://nominatim.openstreetmap.org/reverse?lat=${la}&lon=${lo}&format=json&accept-language=en`)
             .then((r) => r.json())
             .then((d) => {
-              if (d.display_name) {
-                setFormData(prev => ({ ...prev, address: d.display_name.split(",").slice(0, 4).join(", ") }))
+              if (d && d.display_name) {
+                // Better parsed display name for user
+                const parts = d.display_name.split(",").map((s: string) => s.trim())
+                const cleanAddress = parts.slice(0, Math.min(parts.length, 4)).join(", ")
+                setFormData(prev => ({ ...prev, address: cleanAddress }))
               }
-            }).catch(() => {})
+            }).catch((err) => {
+              console.error("Location fetch refined fallback triggered:", err)
+            })
         }
       },
       () => setLocStatus("Access denied. Enter manually.")
@@ -52,21 +57,29 @@ export function VastraOrder() {
 
   const placeOrder = () => {
     const { name, phone, address, service, count, datetime, details } = formData
-    if (!name || !phone || !address || !service || !count) {
+    
+    // Key functionalities refinement: Advanced validation
+    if (!name || !phone || !address || !service || !count || !datetime) {
       alert("Please fill all required fields marked with *")
       return
     }
+    
+    // Phone validation (simple check for at least 10 digits)
+    const phoneClean = phone.replace(/\D/g, '')
+    if (phoneClean.length < 10) {
+      alert("Please enter a valid phone number")
+      return
+    }
+
     const ft = datetime ? new Date(datetime).toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" }) : "As soon as possible"
-    const loc = lat ? `https://maps.google.com/?q=${lat},${lng}` : address
+    const loc = lat && lng ? `https://maps.google.com/?q=${lat},${lng}` : address
     
     const msg = `New Vasthra Order\n\nName: ${name}\nPhone: ${phone}\nLocation: ${loc}\nService: ${service}\nClothes Count: ${count} items\nPickup Time: ${ft}\nDetails: ${details || "Not specified"}\n\nSent via Vasthra website`
     
+    window.open(`https://wa.me/917204758766?text=${encodeURIComponent(msg)}`, "_blank")
+    
     setSummary(`Name: ${name} | Service: ${service} | Clothes: ${count} | Pickup: ${ft}`)
     setShowModal(true)
-    
-    setTimeout(() => {
-      window.open(`https://wa.me/918095588946?text=${encodeURIComponent(msg)}`, "_blank")
-    }, 1000)
   }
 
   const closeModal = () => {
@@ -99,7 +112,9 @@ export function VastraOrder() {
           </p>
         </div>
 
-        <div className="royal-card p-6 sm:p-10 rounded-3xl border-golden-beige/30 shadow-[0_15px_40px_rgba(200,151,58,0.1)]">
+        <div className="relative group perspective-1000 animate-slide-up">
+          <div className="absolute -inset-1 bg-gradient-to-tr from-golden-beige/20 via-transparent to-blessed-yellow/10 rounded-[2.1rem] blur-md opacity-50 group-hover:opacity-100 transition duration-700 pointer-events-none"></div>
+          <div className="relative royal-card bg-stone-brown-mid/90 backdrop-blur-2xl p-8 sm:p-12 rounded-[2rem] border border-golden-beige/20 shadow-[0_30px_60px_rgba(0,0,0,0.5)] group-hover:border-golden-beige/40 transition-all duration-500">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <div>
               <label className="input-label">Your Name *</label>
@@ -153,12 +168,14 @@ export function VastraOrder() {
             <textarea name="details" value={formData.details} onChange={handleChange} className="input-royal min-h-[100px] resize-y" placeholder="e.g. 4 shirts, 2 pants, 1 saree, 2 bedsheets..."></textarea>
           </div>
 
-          <button onClick={placeOrder} className="w-full luxury-gradient font-bold text-stone-brown py-4 rounded-xl hover:shadow-[0_0_20px_rgba(200,151,58,0.4)] transition-all duration-300 transform hover:-translate-y-1 sm:text-lg flex justify-center items-center gap-2">
-            📦 Confirm Order via WhatsApp
+          <button onClick={placeOrder} className="w-full mt-4 bg-gradient-to-r from-golden-beige to-blessed-yellow text-stone-brown font-bold text-lg sm:text-xl py-4 sm:py-5 rounded-2xl shadow-[0_10px_30px_rgba(200,151,58,0.3)] hover:shadow-[0_15px_40px_rgba(200,151,58,0.5)] hover:-translate-y-1 transition-all duration-300 flex justify-center items-center gap-3">
+            <span className="text-2xl">📦</span>
+            Confirm Order via WhatsApp
           </button>
           
           <div className="mt-6 text-center text-sm text-sacred-white/60">
-            Or call us directly: <a href="tel:7259322466" className="text-blessed-yellow font-bold hover:underline">📞 +91 72593 22466</a>
+            Or call us directly: <a href="tel:7204758766" className="text-blessed-yellow font-bold hover:underline">📞 +91 72047 58766</a>
+          </div>
           </div>
         </div>
       </div>

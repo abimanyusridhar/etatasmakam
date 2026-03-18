@@ -4,7 +4,7 @@ import Link from "next/link"
 import { ArrowLeft, Phone, MessageCircle, Clock, Zap } from "lucide-react"
 
 export default function OrderPage() {
-  const phoneNumber = "7259322466"
+  const phoneNumber = "7204758766"
   const alternatePhone = "8951603763"
   const whatsappLink = `https://wa.me/91${phoneNumber}`
 
